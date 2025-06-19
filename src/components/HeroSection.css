@@ -1,0 +1,226 @@
+/* src/components/HeroSection/HeroSection.css */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 2rem 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.hero-left {
+  max-width: 600px;
+}
+
+.announcement-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.05); /* Very subtle white background */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
+  padding: 0.75rem 1.25rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.announcement-badge:hover {
+  background: rgba(255, 255, 255, 0.08); /* Slightly less subtle on hover */
+  transform: translateY(-1px);
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: #eeefbc; /* Grey pulse dot */
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.arrow {
+  color: #888888; /* Grey arrow */
+  font-weight: bold;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 100;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+}
+
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    #dddddd 0%,
+    #aaaaaa 100%
+  ); /* Light grey to darker grey gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 200;
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  color: #e0e0e0; /* Lighter grey for description */
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.primary-btn {
+  background: transparent;
+  border: 1px solid #ffffff; /* White border */
+  padding: 1rem 2rem;
+  border-radius: 6px;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.primary-btn:hover {
+  background: #ffffff; /* White background on hover */
+  color: #0a0a0a; /* Black text on hover */
+  transform: translateY(-2px);
+}
+
+.primary-btn.large {
+  padding: 1.25rem 2.5rem;
+  font-size: 1rem;
+}
+
+.secondary-btn {
+  background: transparent;
+  border: none;
+  padding: 1rem 2rem;
+  color: #a0a0a0; /* Grey for inactive buttons */
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.02em;
+}
+
+.secondary-btn:hover {
+  color: #ffffff; /* White on hover */
+  background: rgba(255, 255, 255, 0.05); /* Subtle white background on hover */
+  border-radius: 6px;
+}
+
+.secondary-btn.large {
+  padding: 1.25rem 2rem;
+  font-size: 1rem;
+}
+
+.btn-arrow {
+  color: #888888; /* Grey arrow */
+  font-weight: bold;
+}
+
+/* Hero Right */
+.hero-right {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* Styles for the new image */
+.hero-image {
+  /* Set a specific width and height here */
+  width: 400px; /* Adjust this value as needed */
+  height: auto; /* Keep aspect ratio, or set a fixed height */
+  max-width: 100%; /* Ensures it scales down on smaller screens */
+  display: block; /* Remove extra space below image */
+  border-radius: 8px; /* Optional: subtle rounded corners for the image */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+  /* No transform for parallax as it's static now */
+}
+
+/* Original animation keyframes (still needed for pulse, etc.) */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* @keyframes float and @keyframes glow are no longer directly used for the image but kept for reference */
+/* If you remove the .robot-container and .glow-effect elements from JSX,
+   these animation keyframes could be removed from CSS as well if not used elsewhere. */
+/*
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(2deg); }
+}
+
+@keyframes glow {
+  0% { transform: scale(1); opacity: 0.3; }
+  100% { transform: scale(1.1); opacity: 0.1; }
+}
+*/
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile Responsiveness for Hero Section */
+@media (max-width: 768px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-image {
+    width: 250px; /* Adjust size for mobile if needed */
+    margin-top: 2rem; /* Add some space above the image on mobile */
+  }
+}

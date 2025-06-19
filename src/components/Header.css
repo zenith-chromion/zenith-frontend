@@ -1,0 +1,148 @@
+/* src/components/Header/Header.css */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(10, 10, 10, 0.95); /* Slightly transparent black */
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* White border, subtle */
+  z-index: 1000;
+  padding: 1.5rem 0;
+  margin-left: -1.6rem;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.logo-text {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  cursor: pointer; /* Make it clear it's clickable */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  user-select: none; /* Prevent text selection */
+}
+
+/* Hover effects for the logo */
+.logo-text:hover {
+  color: #f0f0f0; /* Slightly dimmer white on hover */
+  transform: translateY(-1px); /* Subtle lift effect */
+  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.2); /* Soft glow effect */
+}
+
+/* Active state when clicking */
+.logo-text:active {
+  transform: translateY(0); /* Reset lift on click */
+  transition: transform 0.1s ease; /* Quick transition for click feedback */
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin-right: -3.5rem;
+}
+
+.nav-menu a {
+  color: #a0a0a0; /* Grey for inactive links */
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  letter-spacing: 0.02em;
+  position: relative; /* Add this for the underline effect */
+  padding-bottom: 8px; /* Add space for the underline */
+}
+
+.nav-menu a:hover {
+  color: #ffffff; /* White on hover */
+  transform: translateY(-1px); /* Subtle lift effect on hover */
+}
+
+/* Active page styles */
+.nav-menu a.active {
+  color: #ffffff; /* White for active link */
+  font-weight: 600;
+}
+
+.nav-menu a.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0; /* Position at the bottom of the link */
+  left: 0;
+  width: 100%;
+  height: 2px; /* Thickness of the underline */
+  background: linear-gradient(90deg, #ffffff, #888888); /* Gradient underline */
+  border-radius: 1px;
+  animation: slideIn 0.3s ease-out; /* Smooth animation when active */
+}
+
+/* Optional: Add a subtle glow effect for active links */
+.nav-menu a.active {
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+/* Animation for the active underline */
+@keyframes slideIn {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+/* Hover effect enhancement */
+.nav-menu a:hover::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 1px;
+  transition: all 0.3s ease;
+}
+
+/* Prevent hover underline on already active links */
+.nav-menu a.active:hover::after {
+  height: 2px;
+  background: linear-gradient(90deg, #ffffff, #888888);
+}
+
+.connect-wallet-btn {
+  background: transparent;
+  border: 1px solid #ffffff; /* White border */
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  color: #ffffff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+}
+
+.connect-wallet-btn:hover {
+  background: #ffffff; /* White background on hover */
+  color: #0a0a0a; /* Black text on hover */
+  transform: translateY(-1px); /* Subtle lift effect */
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+/* Mobile Responsiveness for Header */
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none; /* Hide nav menu on small screens */
+  }
+}

@@ -1,0 +1,1101 @@
+/* src/components/GovernancePage/GovernancePage.css */
+
+/* --- Global Governance Page Layout --- */
+.governance-page-container {
+  display: flex;
+  min-height: 100vh;
+  background: #0a0a0a; /* True black background */
+  color: #ffffff; /* Default text color */
+}
+
+.governance-content-area {
+  display: flex;
+  flex-grow: 1; /* Allows it to take remaining space */
+  padding-top: 80px; /* Space for fixed header, adjust if header is very tall */
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 2rem;
+  background-color: #0a0a0a; /* Ensure main content area is black */
+  overflow-y: auto; /* Enable scrolling for main content if it overflows */
+}
+
+/* --- Sidebar (Copied from DashboardPage.css) --- */
+.sidebar {
+  width: 250px; /* Fixed width for sidebar */
+  background-color: #1a1a1a; /* Darker grey for sidebar */
+  padding: 2rem 1.5rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0; /* Prevent sidebar from shrinking */
+  position: sticky; /* Makes sidebar stick on scroll */
+  top: 80px; /* Align with header bottom */
+  height: calc(100vh - 80px); /* Fill remaining viewport height */
+  overflow-y: auto; /* Scrollable sidebar if content overflows */
+}
+
+.sidebar-section {
+  margin-bottom: 2rem;
+}
+
+.sidebar-title {
+  color: #a0a0a0; /* Muted grey for titles */
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #e0e0e0; /* Lighter grey for links */
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease;
+  font-weight: 400;
+  font-size: 0.95rem;
+}
+
+.sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.05); /* Subtle hover background */
+  color: #ffffff;
+}
+
+.sidebar-link.active {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Slightly more prominent active background */
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.sidebar-icon {
+  font-size: 1rem;
+  color: #888888; /* Grey icon color */
+  transition: color 0.2s ease;
+}
+
+.sidebar-link.active .sidebar-icon,
+.sidebar-link:hover .sidebar-icon {
+  color: #ffffff; /* White icon color on active/hover */
+}
+
+/* --- Page Header (Title & Description) --- */
+.page-header {
+  margin-bottom: 2.5rem;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 100;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.page-description {
+  font-size: 1.1rem;
+  color: #a0a0a0;
+  margin-bottom: 0;
+  font-weight: 300;
+}
+
+/* --- Summary Cards Grid --- */
+.summary-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.summary-card {
+  background-color: #1c1c1c; /* Darker grey for cards */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+/* Specific icon wrapper colors (adjust to fit grey theme) */
+.card-icon-wrapper.primary-icon {
+  background-color: rgba(136, 136, 136, 0.2);
+  color: #888888;
+} /* Lighter grey */
+.card-icon-wrapper.secondary-icon {
+  background-color: rgba(136, 136, 136, 0.2);
+  color: #888888;
+}
+.card-icon-wrapper.tertiary-icon {
+  background-color: rgba(136, 136, 136, 0.2);
+  color: #888888;
+}
+.card-icon-wrapper.quaternary-icon {
+  background-color: rgba(136, 136, 136, 0.2);
+  color: #888888;
+}
+
+.card-label {
+  font-size: 0.9rem;
+  color: #a0a0a0; /* Muted grey for labels */
+  margin-bottom: 0.5rem;
+}
+
+.card-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.summary-card .sub-stats {
+  font-size: 0.85rem;
+  color: #a0a0a0;
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.summary-card .sub-text {
+  font-size: 0.85rem;
+  color: #a0a0a0;
+  margin-top: 0.5rem;
+}
+
+.summary-card .treasury-allocation {
+  font-size: 0.85rem;
+  color: #a0a0a0;
+  margin-top: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.percentage-positive {
+  color: #2ecc71; /* Green for positive */
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.percentage-negative {
+  color: #e74c3c; /* Red for negative */
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* --- General Section Styling --- */
+.dashboard-section {
+  background-color: #1c1c1c; /* Darker grey for sections */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap; /* Allow wrapping for actions */
+  gap: 1rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0; /* Remove default margin for title within header */
+}
+
+.view-all-link {
+  color: #888888; /* Grey for "View all" link */
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.view-all-link:hover {
+  color: #ffffff;
+}
+
+.sub-section-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+/* --- Dashboard Grid Two Columns --- */
+.dashboard-grid-two-cols {
+  display: grid;
+  grid-template-columns: 1fr; /* Default to single column on small screens */
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 992px) {
+  .dashboard-grid-two-cols {
+    grid-template-columns: 1.5fr 1fr; /* Adjust ratios for different sections */
+  }
+}
+
+/* --- Active Proposals Section --- */
+.proposal-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.search-input-wrapper.small {
+  position: relative;
+  flex-grow: 1;
+  max-width: 250px; /* Smaller max-width for search in this context */
+}
+
+.search-input-wrapper.small .search-input {
+  width: 100%;
+  padding: 0.6rem 1rem 0.6rem 2.5rem;
+  background-color: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.search-input-wrapper.small .search-input::placeholder {
+  color: #666;
+}
+
+.search-input-wrapper.small .search-input:focus {
+  border-color: #888888;
+}
+
+.search-input-wrapper.small .search-icon {
+  position: absolute;
+  left: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a0a0a0;
+  font-size: 0.9rem;
+}
+
+.filter-btn {
+  background-color: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-btn:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: #888888;
+  color: #ffffff;
+}
+
+.proposal-card {
+  background-color: #121212; /* Even darker grey for individual cards */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.proposal-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.proposal-card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.proposal-status {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2em 0.6em;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.proposal-status.active {
+  background-color: rgba(0, 191, 255, 0.1); /* Sky blue tint */
+  color: #00bfff;
+}
+
+.proposal-description {
+  font-size: 0.9rem;
+  color: #a0a0a0;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.voting-progress {
+  margin-bottom: 1rem;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #2ecc71; /* Green for progress */
+  border-radius: 4px;
+}
+
+.progress-text {
+  font-size: 0.85rem;
+  color: #2ecc71; /* Green */
+  font-weight: 500;
+}
+
+.voting-stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: #e0e0e0;
+}
+
+.voting-stats span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.vote-for-icon {
+  color: #2ecc71;
+} /* Green */
+.vote-against-icon {
+  color: #e74c3c;
+} /* Red */
+.time-left-icon {
+  color: #a0a0a0;
+} /* Grey */
+
+.vote-btn {
+  background-color: #888888; /* Grey button */
+  color: #0a0a0a; /* Black text */
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: auto; /* Push to the right */
+}
+
+.vote-btn:hover {
+  background-color: #ffffff;
+  color: #0a0a0a;
+}
+
+.view-all-proposals-link {
+  display: block;
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #888888;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.view-all-proposals-link:hover {
+  color: #ffffff;
+}
+
+/* --- Voting Power Distribution Section --- */
+.your-voting-power {
+  background-color: #121212;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.your-voting-power p {
+  font-size: 0.9rem;
+  color: #a0a0a0;
+  margin-bottom: 0.5rem;
+}
+
+.your-voting-power h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.percentage-of-total {
+  font-size: 0.85rem;
+  color: #a0a0a0;
+  font-weight: 400;
+}
+
+.delegate-btn {
+  background-color: #888888;
+  color: #0a0a0a;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.delegate-btn:hover {
+  background-color: #ffffff;
+  color: #0a0a0a;
+}
+
+.chart-placeholder.donut-chart-small {
+  width: 180px;
+  height: 180px;
+  margin: 1.5rem auto; /* Center the chart */
+  border-radius: 50%;
+  background-color: #0a0a0a; /* Inner circle color */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); /* Inner shadow for depth */
+}
+
+.chart-placeholder.donut-chart-medium {
+  width: 220px;
+  height: 220px;
+  margin: 1.5rem auto; /* Center the chart */
+  border-radius: 50%;
+  background-color: #0a0a0a; /* Inner circle color */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); /* Inner shadow for depth */
+}
+
+/* Donut Chart Segments (using conic-gradient for simplicity) */
+.chart-placeholder.donut-chart-small .donut-segment,
+.chart-placeholder.donut-chart-medium .donut-segment {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  /* This needs to be set dynamically or for each segment */
+}
+
+/* Voting Power Distribution Segments */
+.chart-placeholder.donut-chart-small {
+  background: conic-gradient(
+    #888888 0% 8.4%,
+    /* Whale.eth */ #a0a0a0 8.4% calc(8.4% + 6.2%),
+    /* Binance */ #666666 calc(8.4% + 6.2%) calc(8.4% + 6.2% + 4.7%),
+    /* DeFiMaestro */ #444444 calc(8.4% + 6.2% + 4.7%)
+      calc(8.4% + 6.2% + 4.7% + 3.9%),
+    /* CryptoVenture */ #222222 calc(8.4% + 6.2% + 4.7% + 3.9%) 100%
+      /* Others */
+  );
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(50% - 20px),
+    /* Inner radius for donut hole */ #fff calc(50% - 10px)
+      /* Outer radius start */
+  );
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    transparent calc(50% - 20px),
+    #fff calc(50% - 10px)
+  );
+}
+
+/* Treasury Asset Allocation Segments */
+.chart-placeholder.donut-chart-medium {
+  background: conic-gradient(
+    #2ecc71 0% 52%,
+    /* ETH */ #f39c12 52% calc(52% + 28%),
+    /* USDC */ #e74c3c calc(52% + 28%) calc(52% + 28% + 5%),
+    /* BTC */ #a0a0a0 calc(52% + 28% + 5%) 100% /* Other */
+  );
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(50% - 30px),
+    /* Inner radius for donut hole */ #fff calc(50% - 15px)
+      /* Outer radius start */
+  );
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    transparent calc(50% - 30px),
+    #fff calc(50% - 15px)
+  );
+}
+
+.voting-power-legend,
+.treasury-asset-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem 1.5rem; /* Row gap and column gap */
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #e0e0e0;
+}
+
+.voting-power-legend p,
+.treasury-asset-legend p {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.color-box {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+/* Colors for Voting Power Legend */
+.color-box.whale {
+  background-color: #888888;
+}
+.color-box.binance {
+  background-color: #a0a0a0;
+}
+.color-box.defimaestro {
+  background-color: #666666;
+}
+.color-box.cryptoventure {
+  background-color: #444444;
+}
+.color-box.others {
+  background-color: #222222;
+}
+
+/* Colors for Treasury Asset Legend */
+.color-box.eth {
+  background-color: #2ecc71;
+} /* Green */
+.color-box.usdc {
+  background-color: #f39c12;
+} /* Orange */
+.color-box.btc {
+  background-color: #e74c3c;
+} /* Red */
+.color-box.other {
+  background-color: #a0a0a0;
+} /* Grey */
+
+.top-voters-section {
+  margin-top: 2.5rem;
+}
+
+.top-voters-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.top-voters-list li {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.9rem;
+  color: #e0e0e0;
+}
+
+.top-voters-list li:last-child {
+  border-bottom: none;
+}
+
+.top-voters-list .rank {
+  font-weight: 600;
+  color: #a0a0a0;
+  width: 25px; /* Fixed width for rank */
+  text-align: center;
+  margin-right: 1rem;
+}
+
+.top-voters-list .voter-name {
+  color: #888888;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+
+.top-voters-list .vote-percentage {
+  margin-left: auto; /* Push to the right */
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* --- Treasury Management Section --- */
+.dashboard-sub-section {
+  background-color: #121212; /* Darker background for sub-sections */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.treasury-management .dashboard-grid-two-cols {
+  margin-bottom: 0; /* Remove extra margin from nested grid */
+}
+
+.chart-placeholder.line-chart-medium {
+  width: 100%;
+  height: 200px; /* Adjust height for this specific chart */
+  margin: 1.5rem 0;
+  background-color: #0a0a0a;
+  border-radius: 8px;
+  position: relative;
+  display: flex;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.chart-y-axis-small {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.5rem 0.5rem 0.5rem 0;
+  color: #a0a0a0;
+  font-size: 0.75rem;
+  text-align: right;
+  border-right: 1px dashed rgba(255, 255, 255, 0.05);
+  flex-shrink: 0;
+  width: 40px; /* Smaller width for y-axis labels */
+}
+
+.chart-area-small {
+  flex-grow: 1;
+  position: relative;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  display: flex;
+  flex-direction: column-reverse; /* To position points from bottom up */
+}
+
+.chart-x-axis-small {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+  color: #a0a0a0;
+  font-size: 0.75rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.05);
+}
+
+.treasury-growth-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    #2ecc71 0%,
+    /* Jan */ #2ecc71 16.6%,
+    /* Feb */ #2ecc71 33.3%,
+    /* Mar */ #2ecc71 50%,
+    /* Apr */ #2ecc71 66.6%,
+    /* May */ #2ecc71 100% /* Jun */
+  );
+  clip-path: polygon(
+    0% 90%,
+    /* Jan */ 16.6% 75%,
+    /* Feb */ 33.3% 80%,
+    /* Mar */ 50% 65%,
+    /* Apr */ 66.6% 70%,
+    /* May */ 100% 50%,
+    /* Jun */ 100% 100%,
+    0% 100%
+  );
+  opacity: 0.2;
+}
+
+.view-details-link {
+  display: block;
+  text-align: right;
+  margin-top: 1rem;
+  color: #888888;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.view-details-link:hover {
+  color: #ffffff;
+}
+
+/* --- Recent Transactions Table --- */
+.table-responsive {
+  overflow-x: auto; /* Enable horizontal scrolling on small screens */
+}
+
+.transactions-table,
+.metrics-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.transactions-table th,
+.metrics-table th {
+  background-color: #1a1a1a;
+  color: #a0a0a0;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
+
+.transactions-table td,
+.metrics-table td {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: #e0e0e0;
+}
+
+.transactions-table tbody tr:last-child td,
+.metrics-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.transaction-detail,
+.proposal-sub-text {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+.status {
+  font-weight: 500;
+}
+
+.status.completed {
+  color: #2ecc71;
+} /* Green */
+.status.pending {
+  color: #f39c12;
+} /* Orange */
+.status.failed {
+  color: #e74c3c;
+} /* Red */
+
+.status-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2em 0.6em;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+.status-badge.passed {
+  background-color: rgba(46, 204, 113, 0.1);
+  color: #2ecc71;
+}
+.status-badge.failed {
+  background-color: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+}
+
+.vote-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3em 0.8em;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.vote-badge.voted-for {
+  background-color: rgba(46, 204, 113, 0.1);
+  color: #2ecc71;
+}
+.vote-badge.voted-against {
+  background-color: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+}
+.vote-badge.voted-abstained {
+  background-color: rgba(136, 136, 136, 0.1);
+  color: #a0a0a0;
+}
+
+.action-link-btn {
+  background: transparent;
+  border: none;
+  color: #888888;
+  text-decoration: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.action-link-btn:hover {
+  color: #ffffff;
+}
+
+.pagination-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.pagination-footer .pagination-info {
+  margin-bottom: 0;
+  text-align: left;
+}
+
+.pagination-footer .pagination {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* --- Create Proposal Section --- */
+.create-proposal-section {
+  background: linear-gradient(90deg, #1c1c1c 0%, #0a0a0a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 2rem 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.create-proposal-left {
+  flex: 1;
+  min-width: 300px;
+}
+
+.create-proposal-section .section-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.create-proposal-description {
+  font-size: 1rem;
+  color: #e0e0e0;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.proposal-requirements p {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: #a0a0a0;
+  margin-bottom: 0.75rem;
+}
+
+.proposal-requirements p .svg-inline--fa {
+  color: #888888; /* Grey info icon */
+  font-size: 1rem;
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.create-new-proposal-btn {
+  background-color: #888888;
+  color: #0a0a0a;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.create-new-proposal-btn:hover {
+  background-color: #ffffff;
+  color: #0a0a0a;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+  .governance-page-container {
+    flex-direction: column; /* Stack sidebar and main content */
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1.5rem;
+  }
+
+  .governance-content-area {
+    padding-top: 0;
+  }
+
+  .main-content {
+    padding: 1rem;
+  }
+
+  .summary-cards-grid {
+    grid-template-columns: 1fr; /* Single column for summary cards */
+  }
+
+  .dashboard-grid-two-cols {
+    grid-template-columns: 1fr; /* Single column for main sections */
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .proposal-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .search-input-wrapper.small {
+    max-width: 100%;
+  }
+
+  .create-proposal-section {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+  }
+
+  .create-new-proposal-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .pagination-footer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pagination-footer .pagination-info {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 2rem;
+  }
+  .page-description {
+    font-size: 0.9rem;
+  }
+  .summary-card .card-value {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+  .voting-stats {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .vote-btn {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+  .transactions-table th,
+  .metrics-table th {
+    padding: 0.5rem;
+    font-size: 0.7rem;
+  }
+  .transactions-table td,
+  .metrics-table td {
+    padding: 0.75rem 0.5rem;
+  }
+  .create-proposal-section .section-title {
+    font-size: 1.5rem;
+  }
+}
