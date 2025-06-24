@@ -58,8 +58,11 @@ export default function CreatePoolForm() {
       await tx.wait();
       alert("Pool created successfully!");
     } catch (err) {
-      console.error("err is ", err);
-    //   alert("Failed to create pool.");
+      console.error("Detailed error:", err);
+        console.error("Error message:", err?.message);
+        console.error("Error stack:", err?.stack);
+        console.log("Full error object:", JSON.stringify(err, null, 2));
+      alert("Failed to create pool.");
     }
   };
 

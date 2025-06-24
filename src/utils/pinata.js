@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const PINATA_API_KEY = import.meta.env.PINATA_API_KEY;
-const PINATA_SECRET_API_KEY = import.meta.env.PINATA_SECRET_API_KEY;
+const PINATA_API_KEY = import.meta.env.VITE_PINATA_API_KEY;
+const PINATA_SECRET_API_KEY = import.meta.env.VITE_PINATA_SECRET_API_KEY;
 
 export async function uploadToIPFS(data) {
   const url = `https://api.pinata.cloud/pinning/pinJSONToIPFS`;
