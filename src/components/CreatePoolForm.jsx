@@ -59,7 +59,7 @@ export default function CreatePoolForm() {
       alert("Pool created successfully!");
     } catch (err) {
       console.error("err is ", err);
-      alert("Failed to create pool.");
+    //   alert("Failed to create pool.");
     }
   };
 
