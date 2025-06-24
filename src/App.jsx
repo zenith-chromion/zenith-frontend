@@ -25,6 +25,8 @@ import MyInvestmentsPage from "./components/MyInvestmentsPage";
 import WatchlistPage from "./components/WatchlistPage";
 import TransactionsPage from "./components/TransactionsPage";
 
+import CreatePoolForm from "./components/CreatePoolForm";
+
 const App = () => {
   const [currentSection, setCurrentSection] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -120,6 +122,19 @@ const App = () => {
             currentPage={currentPage}
           />
         );
+
+
+
+        case "poolForm":
+        return (
+         <CreatePoolForm 
+          onNavigate={handleNavigate}
+          currentPage={currentPage}
+         />
+        );
+
+
+
       case "pools":
         // PoolsPage does not currently use onNavigate/currentPage props for internal nav,
         // but it's good practice to pass them if it might in the future.

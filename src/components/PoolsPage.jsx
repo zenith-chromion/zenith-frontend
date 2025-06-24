@@ -736,7 +736,19 @@ const PoolsPage = ({ onNavigate, currentPage }) => {
             </div>
             <div className="cta-right">
               <button className="learn-more-btn">Learn More</button>
-              <button className="create-pool-btn">Create Pool</button>
+              
+              <button className="create-pool-btn">
+                <a
+                    href="#poolForm"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate("poolForm");
+                    }}
+                    className={currentPage === "poolForm" ? "active" : ""}
+                  >
+                Create Pool
+              </a>
+              </button>
             </div>
           </div>
         </main>

@@ -1,0 +1,80 @@
+/* CreatePoolForm.css */
+
+.createPool {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 30px 40px;
+  background-color: #1e1e2f;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.createPool h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #f9f9f9;
+  font-size: 28px;
+}
+
+.createPool input,
+.createPool textarea {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #2a2a3d;
+  color: #f0f0f0;
+  outline: none;
+  transition: border 0.2s ease-in-out;
+}
+
+.createPool input:focus,
+.createPool textarea:focus {
+  border: 2px solid #00bcd4;
+}
+
+.createPool textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.ccreate-pool-btn-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: #00bcd4;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.ccreate-pool-btn-btn:hover {
+  background-color: #019aad;
+}
+
+@media (max-width: 600px) {
+  .createPool {
+    padding: 20px;
+    margin: 20px;
+  }
+
+  .createPool h2 {
+    font-size: 24px;
+  }
+
+  .ccreate-pool-btn-btn {
+    font-size: 16px;
+  }
+}
+
+
+.createPool {
+    margin-top: 10rem;
+}
