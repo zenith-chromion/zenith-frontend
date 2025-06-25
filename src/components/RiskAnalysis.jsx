@@ -1,6 +1,4 @@
-// src/pages/Performance.jsx
-import React from "react";
-import "./Performance.css";
+import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -25,36 +23,34 @@ import {
   faArrowDown,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
-const fundManagers = [
+import './RiskAnalysis.css';
+const riskData = [
   {
-    name: "AlphaWolf",
-    tier: "Tier 1",
-    pnl: "+23.5%",
-    roi: "19.2%",
-    verified: true,
-    strategy: "DeFi Arbitrage",
+    pool: "AlphaWolf Pool",
+    riskLevel: "Low",
+    volatility: "3.2%",
+    zkProofs: true,
+    assetConcentration: "Balanced",
   },
   {
-    name: "DeFiWhale",
-    tier: "Tier 2",
-    pnl: "+12.8%",
-    roi: "10.1%",
-    verified: false,
-    strategy: "Yield Farming",
+    pool: "DeFiWhale Pool",
+    riskLevel: "Moderate",
+    volatility: "7.5%",
+    zkProofs: false,
+    assetConcentration: "High in USDT",
   },
   {
-    name: "CrossChainX",
-    tier: "Tier 3",
-    pnl: "-4.5%",
-    roi: "-2.3%",
-    verified: true,
-    strategy: "Cross-chain Trading",
+    pool: "CrossChainX Pool",
+    riskLevel: "High",
+    volatility: "12.1%",
+    zkProofs: true,
+    assetConcentration: "80% stETH",
   },
 ];
-
-const Performance = ( {onNavigate, currentPage} ) => {
+const RiskAnalysis = ({onNavigate, currentPage}) => {
   return (
-    <div className="performance poolAndAside">
+    <div className="poolAndAside">
+
       <aside className="sidebar">
                 <div className="sidebar-section">
                   <h4 className="sidebar-title">ANALYTICS</h4>
@@ -276,70 +272,49 @@ const Performance = ( {onNavigate, currentPage} ) => {
                 </div>
               </aside>
 
-      <section className="performance-section">
-        <div className="performance-container">
-          <div className="performance-header">
-            <h1 className="performance-title gradient-text">
-              Fund Manager Performance
-            </h1>
-            <p className="performance-subtitle">
-              Explore how top-performing managers are growing LP funds. All
-              metrics are either public or ZK-verified.
-            </p>
-          </div>
-
-          <div className="performance-grid">
-            {fundManagers.map((fm, index) => (
-              <div key={index} className="performance-card">
-                <div className="card-header">
-                  <h2>{fm.name}</h2>
-                  <span
-                    className={`tier-badge ${fm.tier
-                      .toLowerCase()
-                      .replace(" ", "-")}`}
-                  >
-                    {fm.tier}
-                  </span>
-                </div>
-                <p className="strategy-label">{fm.strategy}</p>
-
-                <div className="metrics">
-                  <div>
-                    <p className="metric-label">PnL</p>
-                    <p
-                      className={`metric-value ${
-                        fm.pnl.startsWith("-") ? "negative" : "positive"
-                      }`}
-                    >
-                      {fm.pnl}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="metric-label">ROI</p>
-                    <p
-                      className={`metric-value ${
-                        fm.roi.startsWith("-") ? "negative" : "positive"
-                      }`}
-                    >
-                      {fm.roi}
-                    </p>
-                  </div>
-                </div>
-
-                <div
-                  className={`zk-status ${
-                    fm.verified ? "verified" : "unverified"
-                  }`}
-                >
-                  {fm.verified ? "ZK Verified" : "Unverified"}
-                </div>
-              </div>
-            ))}
-          </div>
+         <section className="risk-analysis-section">
+      <div className="risk-container">
+        <div className="risk-header">
+          <h1 className="risk-title gradient-text">Risk Analysis</h1>
+          <p className="risk-subtitle">
+            Assess fund pool risks based on volatility, asset distribution, and privacy-proofed performance.
+          </p>
         </div>
-      </section>
-    </div>
-  );
-};
 
-export default Performance;
+        <div className="risk-grid">
+          {riskData.map((item, index) => (
+            <div className="risk-card" key={index}>
+              <h2 className="pool-name">{item.pool}</h2>
+              <div className={`risk-badge ${item.riskLevel.toLowerCase()}`}>
+                {item.riskLevel} Risk
+              </div>
+
+              <div className="risk-metrics">
+                <p>
+                  <span className="label">Volatility:</span>{" "}
+                  <span>{item.volatility}</span>
+                </p>
+                <p>
+                  <span className="label">ZK Proofs:</span>{" "}
+                  <span className={item.zkProofs ? "yes" : "no"}>
+                    {item.zkProofs ? "Verified" : "Unverified"}
+                  </span>
+                </p>
+                <p>
+                  <span className="label">Asset Mix:</span>{" "}
+                  <span>{item.assetConcentration}</span>
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+          
+    </div>
+  )
+}
+
+export default RiskAnalysis

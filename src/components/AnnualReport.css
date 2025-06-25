@@ -1,0 +1,97 @@
+/* src/pages/AnnualReport.css */
+.annual-report-section {
+  min-height: 100vh;
+  padding: 120px 2rem 60px;
+  background-color: #0a0a0a;
+  color: #ffffff;
+}
+
+.annual-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.annual-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.annual-title {
+  font-size: 3rem;
+  font-weight: 200;
+  margin-bottom: 1rem;
+}
+
+.annual-subtitle {
+  font-size: 1.1rem;
+  color: #cccccc;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.annual-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.annual-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.annual-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.annual-card h2 {
+  font-size: 1.1rem;
+  color: #bbbbbb;
+  margin-bottom: 0.8rem;
+}
+
+.annual-card p {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.chain-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.chain-list li {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  color: #e0e0e0;
+}
+
+.wide {
+  grid-column: span 2;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .annual-title {
+    font-size: 2.3rem;
+  }
+
+  .annual-card p {
+    font-size: 1.4rem;
+  }
+
+  .wide {
+    grid-column: span 1;
+  }
+}

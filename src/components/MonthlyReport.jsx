@@ -1,6 +1,6 @@
-// src/pages/Performance.jsx
-import React from "react";
-import "./Performance.css";
+import React from 'react'
+
+import './MonthlyReport.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -25,36 +25,23 @@ import {
   faArrowDown,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
-const fundManagers = [
-  {
-    name: "AlphaWolf",
-    tier: "Tier 1",
-    pnl: "+23.5%",
-    roi: "19.2%",
-    verified: true,
-    strategy: "DeFi Arbitrage",
-  },
-  {
-    name: "DeFiWhale",
-    tier: "Tier 2",
-    pnl: "+12.8%",
-    roi: "10.1%",
-    verified: false,
-    strategy: "Yield Farming",
-  },
-  {
-    name: "CrossChainX",
-    tier: "Tier 3",
-    pnl: "-4.5%",
-    roi: "-2.3%",
-    verified: true,
-    strategy: "Cross-chain Trading",
-  },
-];
 
-const Performance = ( {onNavigate, currentPage} ) => {
+const reportData = {
+  month: "June 2025",
+  totalVolume: "$18.4M",
+  avgROI: "6.2%",
+  activeFundManagers: 14,
+  totalInvestors: 312,
+  topPool: "AlphaWolf Pool",
+  newPoolsCreated: 5,
+  avgHoldingTime: "4.7 months",
+  zkVerifiedSubmissions: 9,
+};
+const MonthlyReport = ({onNavigate, currentPage}) => {
+  
   return (
-    <div className="performance poolAndAside">
+    <div className="poolAndAside">
+
       <aside className="sidebar">
                 <div className="sidebar-section">
                   <h4 className="sidebar-title">ANALYTICS</h4>
@@ -276,70 +263,56 @@ const Performance = ( {onNavigate, currentPage} ) => {
                 </div>
               </aside>
 
-      <section className="performance-section">
-        <div className="performance-container">
-          <div className="performance-header">
-            <h1 className="performance-title gradient-text">
-              Fund Manager Performance
-            </h1>
-            <p className="performance-subtitle">
-              Explore how top-performing managers are growing LP funds. All
-              metrics are either public or ZK-verified.
-            </p>
+         <section className="report-section">
+      <div className="report-container">
+        <div className="report-header">
+          <h1 className="report-title gradient-text">Monthly Report</h1>
+          <p className="report-subtitle">
+            A comprehensive overview of protocol activity and growth for <strong>{reportData.month}</strong>.
+          </p>
+        </div>
+
+        <div className="report-grid">
+          <div className="report-item">
+            <h2>Total Volume</h2>
+            <p>{reportData.totalVolume}</p>
           </div>
-
-          <div className="performance-grid">
-            {fundManagers.map((fm, index) => (
-              <div key={index} className="performance-card">
-                <div className="card-header">
-                  <h2>{fm.name}</h2>
-                  <span
-                    className={`tier-badge ${fm.tier
-                      .toLowerCase()
-                      .replace(" ", "-")}`}
-                  >
-                    {fm.tier}
-                  </span>
-                </div>
-                <p className="strategy-label">{fm.strategy}</p>
-
-                <div className="metrics">
-                  <div>
-                    <p className="metric-label">PnL</p>
-                    <p
-                      className={`metric-value ${
-                        fm.pnl.startsWith("-") ? "negative" : "positive"
-                      }`}
-                    >
-                      {fm.pnl}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="metric-label">ROI</p>
-                    <p
-                      className={`metric-value ${
-                        fm.roi.startsWith("-") ? "negative" : "positive"
-                      }`}
-                    >
-                      {fm.roi}
-                    </p>
-                  </div>
-                </div>
-
-                <div
-                  className={`zk-status ${
-                    fm.verified ? "verified" : "unverified"
-                  }`}
-                >
-                  {fm.verified ? "ZK Verified" : "Unverified"}
-                </div>
-              </div>
-            ))}
+          <div className="report-item">
+            <h2>Average ROI</h2>
+            <p>{reportData.avgROI}</p>
+          </div>
+          <div className="report-item">
+            <h2>Active Fund Managers</h2>
+            <p>{reportData.activeFundManagers}</p>
+          </div>
+          <div className="report-item">
+            <h2>Total Investors</h2>
+            <p>{reportData.totalInvestors}</p>
+          </div>
+          <div className="report-item">
+            <h2>Top Pool</h2>
+            <p>{reportData.topPool}</p>
+          </div>
+          <div className="report-item">
+            <h2>New Pools Created</h2>
+            <p>{reportData.newPoolsCreated}</p>
+          </div>
+          <div className="report-item">
+            <h2>Avg. Holding Time</h2>
+            <p>{reportData.avgHoldingTime}</p>
+          </div>
+          <div className="report-item">
+            <h2>ZK-Verified Proofs</h2>
+            <p>{reportData.zkVerifiedSubmissions}</p>
           </div>
         </div>
-      </section>
-    </div>
-  );
-};
+      </div>
+    </section>
 
-export default Performance;
+
+
+    </div>
+  )
+}
+
+export default MonthlyReport

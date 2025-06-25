@@ -1,6 +1,4 @@
-// src/pages/Performance.jsx
-import React from "react";
-import "./Performance.css";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -25,36 +23,30 @@ import {
   faArrowDown,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
-const fundManagers = [
-  {
-    name: "AlphaWolf",
-    tier: "Tier 1",
-    pnl: "+23.5%",
-    roi: "19.2%",
-    verified: true,
-    strategy: "DeFi Arbitrage",
-  },
-  {
-    name: "DeFiWhale",
-    tier: "Tier 2",
-    pnl: "+12.8%",
-    roi: "10.1%",
-    verified: false,
-    strategy: "Yield Farming",
-  },
-  {
-    name: "CrossChainX",
-    tier: "Tier 3",
-    pnl: "-4.5%",
-    roi: "-2.3%",
-    verified: true,
-    strategy: "Cross-chain Trading",
-  },
+import "./PortfolioBuilder.css";
+const pools = [
+  { name: "AlphaWolf Pool", roi: 6.2, risk: "Low" },
+  { name: "DeFiWhale Pool", roi: 9.4, risk: "Moderate" },
+  { name: "CrossChainX Pool", roi: 12.8, risk: "High" },
 ];
+const PortfolioBuilder = ({ onNavigate, currentPage }) => {
+  const [allocations, setAllocations] = useState(pools.map(() => 0));
 
-const Performance = ( {onNavigate, currentPage} ) => {
+  const handleAllocationChange = (index, value) => {
+    const newAllocations = [...allocations];
+    newAllocations[index] = parseFloat(value) || 0;
+    setAllocations(newAllocations);
+  };
+
+  const totalInvestment = allocations.reduce((a, b) => a + b, 0);
+  const weightedROI = allocations.reduce(
+    (sum, val, idx) => sum + val * (pools[idx].roi / 100),
+    0
+  );
+  const avgROI =
+    totalInvestment > 0 ? (weightedROI / totalInvestment) * 100 : 0;
   return (
-    <div className="performance poolAndAside">
+    <div className="poolAndAside">
       <aside className="sidebar">
                 <div className="sidebar-section">
                   <h4 className="sidebar-title">ANALYTICS</h4>
@@ -276,65 +268,40 @@ const Performance = ( {onNavigate, currentPage} ) => {
                 </div>
               </aside>
 
-      <section className="performance-section">
-        <div className="performance-container">
-          <div className="performance-header">
-            <h1 className="performance-title gradient-text">
-              Fund Manager Performance
-            </h1>
-            <p className="performance-subtitle">
-              Explore how top-performing managers are growing LP funds. All
-              metrics are either public or ZK-verified.
+      <section className="portfolio-section">
+        <div className="portfolio-container">
+          <div className="portfolio-header">
+            <h1 className="portfolio-title gradient-text">Portfolio Builder</h1>
+            <p className="portfolio-subtitle">
+              Simulate your investment strategy across multiple pools.
             </p>
           </div>
 
-          <div className="performance-grid">
-            {fundManagers.map((fm, index) => (
-              <div key={index} className="performance-card">
-                <div className="card-header">
-                  <h2>{fm.name}</h2>
-                  <span
-                    className={`tier-badge ${fm.tier
-                      .toLowerCase()
-                      .replace(" ", "-")}`}
-                  >
-                    {fm.tier}
-                  </span>
-                </div>
-                <p className="strategy-label">{fm.strategy}</p>
-
-                <div className="metrics">
-                  <div>
-                    <p className="metric-label">PnL</p>
-                    <p
-                      className={`metric-value ${
-                        fm.pnl.startsWith("-") ? "negative" : "positive"
-                      }`}
-                    >
-                      {fm.pnl}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="metric-label">ROI</p>
-                    <p
-                      className={`metric-value ${
-                        fm.roi.startsWith("-") ? "negative" : "positive"
-                      }`}
-                    >
-                      {fm.roi}
-                    </p>
-                  </div>
-                </div>
-
-                <div
-                  className={`zk-status ${
-                    fm.verified ? "verified" : "unverified"
-                  }`}
-                >
-                  {fm.verified ? "ZK Verified" : "Unverified"}
-                </div>
+          <div className="portfolio-form">
+            {pools.map((pool, index) => (
+              <div className="pool-input" key={index}>
+                <label>
+                  {pool.name} ({pool.risk} Risk | ROI: {pool.roi}%)
+                </label>
+                <input
+                  type="number"
+                  value={allocations[index]}
+                  onChange={(e) =>
+                    handleAllocationChange(index, e.target.value)
+                  }
+                  placeholder="Enter amount in USDC"
+                  min="0"
+                />
               </div>
             ))}
+          </div>
+
+          <div className="portfolio-summary">
+            <h2>Total Investment: ${totalInvestment.toFixed(2)}</h2>
+            <h3>Estimated Avg. ROI: {avgROI.toFixed(2)}%</h3>
+            <p className="summary-note">
+              Note: ROI is based on historical performance and may vary.
+            </p>
           </div>
         </div>
       </section>
@@ -342,4 +309,4 @@ const Performance = ( {onNavigate, currentPage} ) => {
   );
 };
 
-export default Performance;
+export default PortfolioBuilder;

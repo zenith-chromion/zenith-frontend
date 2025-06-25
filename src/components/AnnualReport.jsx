@@ -1,6 +1,5 @@
-// src/pages/Performance.jsx
 import React from "react";
-import "./Performance.css";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -25,36 +24,24 @@ import {
   faArrowDown,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
-const fundManagers = [
-  {
-    name: "AlphaWolf",
-    tier: "Tier 1",
-    pnl: "+23.5%",
-    roi: "19.2%",
-    verified: true,
-    strategy: "DeFi Arbitrage",
-  },
-  {
-    name: "DeFiWhale",
-    tier: "Tier 2",
-    pnl: "+12.8%",
-    roi: "10.1%",
-    verified: false,
-    strategy: "Yield Farming",
-  },
-  {
-    name: "CrossChainX",
-    tier: "Tier 3",
-    pnl: "-4.5%",
-    roi: "-2.3%",
-    verified: true,
-    strategy: "Cross-chain Trading",
-  },
-];
+import "./AnnualReport.css";
 
-const Performance = ( {onNavigate, currentPage} ) => {
+const annualData = {
+  year: "2024–2025",
+  totalVolume: "$192.7M",
+  avgAnnualROI: "24.3%",
+  newFundManagers: 28,
+  newInvestors: 920,
+  topFundManager: "0xAlphaWolf",
+  topPool: "CrossChainX Pool",
+  daoProposalsPassed: 12,
+  chainsExpandedTo: ["Ethereum", "Arbitrum", "Optimism", "Base"],
+  zkProofsSubmitted: 87,
+};
+
+const AnnualReport = ({ onNavigate, currentPage }) => {
   return (
-    <div className="performance poolAndAside">
+    <div className="poolAndAside">
       <aside className="sidebar">
                 <div className="sidebar-section">
                   <h4 className="sidebar-title">ANALYTICS</h4>
@@ -276,65 +263,57 @@ const Performance = ( {onNavigate, currentPage} ) => {
                 </div>
               </aside>
 
-      <section className="performance-section">
-        <div className="performance-container">
-          <div className="performance-header">
-            <h1 className="performance-title gradient-text">
-              Fund Manager Performance
-            </h1>
-            <p className="performance-subtitle">
-              Explore how top-performing managers are growing LP funds. All
-              metrics are either public or ZK-verified.
+      <section className="annual-report-section">
+        <div className="annual-container">
+          <div className="annual-header">
+            <h1 className="annual-title gradient-text">Annual Report</h1>
+            <p className="annual-subtitle">
+              FundForge protocol performance, growth, and community milestones
+              across <strong>{annualData.year}</strong>.
             </p>
           </div>
 
-          <div className="performance-grid">
-            {fundManagers.map((fm, index) => (
-              <div key={index} className="performance-card">
-                <div className="card-header">
-                  <h2>{fm.name}</h2>
-                  <span
-                    className={`tier-badge ${fm.tier
-                      .toLowerCase()
-                      .replace(" ", "-")}`}
-                  >
-                    {fm.tier}
-                  </span>
-                </div>
-                <p className="strategy-label">{fm.strategy}</p>
-
-                <div className="metrics">
-                  <div>
-                    <p className="metric-label">PnL</p>
-                    <p
-                      className={`metric-value ${
-                        fm.pnl.startsWith("-") ? "negative" : "positive"
-                      }`}
-                    >
-                      {fm.pnl}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="metric-label">ROI</p>
-                    <p
-                      className={`metric-value ${
-                        fm.roi.startsWith("-") ? "negative" : "positive"
-                      }`}
-                    >
-                      {fm.roi}
-                    </p>
-                  </div>
-                </div>
-
-                <div
-                  className={`zk-status ${
-                    fm.verified ? "verified" : "unverified"
-                  }`}
-                >
-                  {fm.verified ? "ZK Verified" : "Unverified"}
-                </div>
-              </div>
-            ))}
+          <div className="annual-grid">
+            <div className="annual-card">
+              <h2>Total Volume</h2>
+              <p>{annualData.totalVolume}</p>
+            </div>
+            <div className="annual-card">
+              <h2>Average ROI</h2>
+              <p>{annualData.avgAnnualROI}</p>
+            </div>
+            <div className="annual-card">
+              <h2>New Fund Managers</h2>
+              <p>{annualData.newFundManagers}</p>
+            </div>
+            <div className="annual-card">
+              <h2>New Investors</h2>
+              <p>{annualData.newInvestors}</p>
+            </div>
+            <div className="annual-card">
+              <h2>Top Fund Manager</h2>
+              <p>{annualData.topFundManager}</p>
+            </div>
+            <div className="annual-card">
+              <h2>Top Performing Pool</h2>
+              <p>{annualData.topPool}</p>
+            </div>
+            <div className="annual-card">
+              <h2>DAO Proposals Passed</h2>
+              <p>{annualData.daoProposalsPassed}</p>
+            </div>
+            <div className="annual-card wide">
+              <h2>Chains Expanded To</h2>
+              <ul className="chain-list">
+                {annualData.chainsExpandedTo.map((chain, index) => (
+                  <li key={index}>{chain}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="annual-card">
+              <h2>ZK Proofs Submitted</h2>
+              <p>{annualData.zkProofsSubmitted}</p>
+            </div>
           </div>
         </div>
       </section>
@@ -342,4 +321,4 @@ const Performance = ( {onNavigate, currentPage} ) => {
   );
 };
 
-export default Performance;
+export default AnnualReport;

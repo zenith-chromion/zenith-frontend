@@ -1,6 +1,4 @@
-// src/pages/Performance.jsx
 import React from "react";
-import "./Performance.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -25,36 +23,37 @@ import {
   faArrowDown,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
-const fundManagers = [
+import './InvesterBehaviour.css';
+
+const investorData = [
   {
-    name: "AlphaWolf",
-    tier: "Tier 1",
-    pnl: "+23.5%",
-    roi: "19.2%",
-    verified: true,
-    strategy: "DeFi Arbitrage",
+    address: "0xA1...D3F",
+    favPool: "AlphaWolf Pool",
+    totalInvested: "$5,200",
+    activeSince: "2024-11-10",
+    holdingDuration: "7.2 months",
+    actions: "Mostly Holding",
   },
   {
-    name: "DeFiWhale",
-    tier: "Tier 2",
-    pnl: "+12.8%",
-    roi: "10.1%",
-    verified: false,
-    strategy: "Yield Farming",
+    address: "0x9B...7E2",
+    favPool: "DeFiWhale Pool",
+    totalInvested: "$3,400",
+    activeSince: "2025-01-18",
+    holdingDuration: "5.1 months",
+    actions: "Frequent Withdrawals",
   },
   {
-    name: "CrossChainX",
-    tier: "Tier 3",
-    pnl: "-4.5%",
-    roi: "-2.3%",
-    verified: true,
-    strategy: "Cross-chain Trading",
+    address: "0xF2...CC9",
+    favPool: "CrossChainX Pool",
+    totalInvested: "$2,750",
+    activeSince: "2025-02-07",
+    holdingDuration: "4.6 months",
+    actions: "Regular Top-Ups",
   },
 ];
-
-const Performance = ( {onNavigate, currentPage} ) => {
+const InvesterBehaviour = ({ onNavigate, currentPage }) => {
   return (
-    <div className="performance poolAndAside">
+    <div className="poolAndAside">
       <aside className="sidebar">
                 <div className="sidebar-section">
                   <h4 className="sidebar-title">ANALYTICS</h4>
@@ -276,65 +275,41 @@ const Performance = ( {onNavigate, currentPage} ) => {
                 </div>
               </aside>
 
-      <section className="performance-section">
-        <div className="performance-container">
-          <div className="performance-header">
-            <h1 className="performance-title gradient-text">
-              Fund Manager Performance
-            </h1>
-            <p className="performance-subtitle">
-              Explore how top-performing managers are growing LP funds. All
-              metrics are either public or ZK-verified.
+      <section className="investor-section">
+        <div className="investor-container">
+          <div className="investor-header">
+            <h1 className="investor-title gradient-text">Investor Behaviour</h1>
+            <p className="investor-subtitle">
+              Track how investors interact with pools — insights into habits,
+              preferences, and behavior trends.
             </p>
           </div>
 
-          <div className="performance-grid">
-            {fundManagers.map((fm, index) => (
-              <div key={index} className="performance-card">
-                <div className="card-header">
-                  <h2>{fm.name}</h2>
-                  <span
-                    className={`tier-badge ${fm.tier
-                      .toLowerCase()
-                      .replace(" ", "-")}`}
-                  >
-                    {fm.tier}
-                  </span>
-                </div>
-                <p className="strategy-label">{fm.strategy}</p>
-
-                <div className="metrics">
-                  <div>
-                    <p className="metric-label">PnL</p>
-                    <p
-                      className={`metric-value ${
-                        fm.pnl.startsWith("-") ? "negative" : "positive"
-                      }`}
-                    >
-                      {fm.pnl}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="metric-label">ROI</p>
-                    <p
-                      className={`metric-value ${
-                        fm.roi.startsWith("-") ? "negative" : "positive"
-                      }`}
-                    >
-                      {fm.roi}
-                    </p>
-                  </div>
-                </div>
-
-                <div
-                  className={`zk-status ${
-                    fm.verified ? "verified" : "unverified"
-                  }`}
-                >
-                  {fm.verified ? "ZK Verified" : "Unverified"}
-                </div>
-              </div>
-            ))}
+          <div className="investor-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Wallet Address</th>
+                  <th>Favorite Pool</th>
+                  <th>Total Invested</th>
+                  <th>Active Since</th>
+                  <th>Holding Duration</th>
+                  <th>Behaviour</th>
+                </tr>
+              </thead>
+              <tbody>
+                {investorData.map((inv, index) => (
+                  <tr key={index}>
+                    <td>{inv.address}</td>
+                    <td>{inv.favPool}</td>
+                    <td>{inv.totalInvested}</td>
+                    <td>{inv.activeSince}</td>
+                    <td>{inv.holdingDuration}</td>
+                    <td>{inv.actions}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
@@ -342,4 +317,4 @@ const Performance = ( {onNavigate, currentPage} ) => {
   );
 };
 
-export default Performance;
+export default InvesterBehaviour;

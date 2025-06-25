@@ -1,6 +1,5 @@
-// src/pages/Performance.jsx
 import React from "react";
-import "./Performance.css";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -25,36 +24,38 @@ import {
   faArrowDown,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
-const fundManagers = [
+
+const poolComparisonData = [
   {
-    name: "AlphaWolf",
-    tier: "Tier 1",
-    pnl: "+23.5%",
-    roi: "19.2%",
-    verified: true,
-    strategy: "DeFi Arbitrage",
+    name: "AlphaWolf Pool",
+    roi: "6.4%",
+    volatility: "Low",
+    lockPeriod: "30 days",
+    fees: "5%",
+    zkVerified: true,
   },
   {
-    name: "DeFiWhale",
-    tier: "Tier 2",
-    pnl: "+12.8%",
-    roi: "10.1%",
-    verified: false,
-    strategy: "Yield Farming",
+    name: "DeFiWhale Pool",
+    roi: "9.2%",
+    volatility: "Moderate",
+    lockPeriod: "45 days",
+    fees: "10%",
+    zkVerified: false,
   },
   {
-    name: "CrossChainX",
-    tier: "Tier 3",
-    pnl: "-4.5%",
-    roi: "-2.3%",
-    verified: true,
-    strategy: "Cross-chain Trading",
+    name: "CrossChainX Pool",
+    roi: "12.1%",
+    volatility: "High",
+    lockPeriod: "60 days",
+    fees: "15%",
+    zkVerified: true,
   },
 ];
 
-const Performance = ( {onNavigate, currentPage} ) => {
+import "./ComparePools.css";
+const ComparePools = ({ onNavigate, currentPage }) => {
   return (
-    <div className="performance poolAndAside">
+    <div className="poolAndAside">
       <aside className="sidebar">
                 <div className="sidebar-section">
                   <h4 className="sidebar-title">ANALYTICS</h4>
@@ -276,65 +277,72 @@ const Performance = ( {onNavigate, currentPage} ) => {
                 </div>
               </aside>
 
-      <section className="performance-section">
-        <div className="performance-container">
-          <div className="performance-header">
-            <h1 className="performance-title gradient-text">
-              Fund Manager Performance
-            </h1>
-            <p className="performance-subtitle">
-              Explore how top-performing managers are growing LP funds. All
-              metrics are either public or ZK-verified.
+      <section className="compare-section">
+        <div className="compare-container">
+          <div className="compare-header">
+            <h1 className="compare-title gradient-text">Compare Pools</h1>
+            <p className="compare-subtitle">
+              Analyze performance, risk, and terms of each pool before
+              investing.
             </p>
           </div>
 
-          <div className="performance-grid">
-            {fundManagers.map((fm, index) => (
-              <div key={index} className="performance-card">
-                <div className="card-header">
-                  <h2>{fm.name}</h2>
-                  <span
-                    className={`tier-badge ${fm.tier
-                      .toLowerCase()
-                      .replace(" ", "-")}`}
-                  >
-                    {fm.tier}
+          <div className="compare-table">
+            <div className="compare-row compare-header-row">
+              <div className="compare-col heading">Metric</div>
+              {poolComparisonData.map((pool, i) => (
+                <div className="compare-col" key={i}>
+                  {pool.name}
+                </div>
+              ))}
+            </div>
+
+            <div className="compare-row">
+              <div className="compare-col heading">ROI</div>
+              {poolComparisonData.map((pool, i) => (
+                <div className="compare-col" key={i}>
+                  {pool.roi}
+                </div>
+              ))}
+            </div>
+
+            <div className="compare-row">
+              <div className="compare-col heading">Volatility</div>
+              {poolComparisonData.map((pool, i) => (
+                <div className="compare-col" key={i}>
+                  {pool.volatility}
+                </div>
+              ))}
+            </div>
+
+            <div className="compare-row">
+              <div className="compare-col heading">Lock Period</div>
+              {poolComparisonData.map((pool, i) => (
+                <div className="compare-col" key={i}>
+                  {pool.lockPeriod}
+                </div>
+              ))}
+            </div>
+
+            <div className="compare-row">
+              <div className="compare-col heading">Fees</div>
+              {poolComparisonData.map((pool, i) => (
+                <div className="compare-col" key={i}>
+                  {pool.fees}
+                </div>
+              ))}
+            </div>
+
+            <div className="compare-row">
+              <div className="compare-col heading">ZK Verified</div>
+              {poolComparisonData.map((pool, i) => (
+                <div className="compare-col" key={i}>
+                  <span className={pool.zkVerified ? "yes" : "no"}>
+                    {pool.zkVerified ? "Yes" : "No"}
                   </span>
                 </div>
-                <p className="strategy-label">{fm.strategy}</p>
-
-                <div className="metrics">
-                  <div>
-                    <p className="metric-label">PnL</p>
-                    <p
-                      className={`metric-value ${
-                        fm.pnl.startsWith("-") ? "negative" : "positive"
-                      }`}
-                    >
-                      {fm.pnl}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="metric-label">ROI</p>
-                    <p
-                      className={`metric-value ${
-                        fm.roi.startsWith("-") ? "negative" : "positive"
-                      }`}
-                    >
-                      {fm.roi}
-                    </p>
-                  </div>
-                </div>
-
-                <div
-                  className={`zk-status ${
-                    fm.verified ? "verified" : "unverified"
-                  }`}
-                >
-                  {fm.verified ? "ZK Verified" : "Unverified"}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -342,4 +350,4 @@ const Performance = ( {onNavigate, currentPage} ) => {
   );
 };
 
-export default Performance;
+export default ComparePools;

@@ -26,7 +26,7 @@ import {
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 
-const AnalyticsPage = ( {onNavigate} ) => {
+const AnalyticsPage = ( {onNavigate, currentPage} ) => {
   return (
     <div className="analytics-page-container">
       <div className="analytics-content-area">
@@ -34,51 +34,97 @@ const AnalyticsPage = ( {onNavigate} ) => {
           <div className="sidebar-section">
             <h4 className="sidebar-title">ANALYTICS</h4>
             <ul>
-              <li>
-                <a href="#overview" className="sidebar-link active">
-                  <FontAwesomeIcon icon={faHome} className="sidebar-icon" />{" "}
-                  {/* Using faHome for Overview as per image */}
+              <li  >
+                <a
+                  href="#overview"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("overview");
+                  }}
+                  className={
+                    currentPage === "overview"
+                      ? "sidebar-link active"
+                      : "sidebar-link"
+                  }
+                  
+                >
+                  <FontAwesomeIcon icon={faHome} className="sidebar-icon" />
                   Overview
                 </a>
+
               </li>
-              <li>
-                <a href="#performance" className="sidebar-link">
-                  <FontAwesomeIcon
-                    icon={faChartLine}
-                    className="sidebar-icon"
-                  />
+              <li >
+
+                  <a
+                  href="#performance"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("performance");
+                  }}
+                  className={
+                    currentPage === "performance"
+                      ? "sidebar-link active"
+                      : "sidebar-link"
+                  }
+                >
+                  <FontAwesomeIcon icon={faChartLine} className="sidebar-icon" />
                   Performance
                 </a>
+
+
               </li>
               <li>
-                <a href="#asset-allocation" className="sidebar-link">
-                  <FontAwesomeIcon icon={faWallet} className="sidebar-icon" />{" "}
-                  {/* Using faWallet for Asset Allocation */}
-                  Asset Allocation
-                </a>
-              </li>
-              <li>
-                <a href="#risk-analysis" className="sidebar-link">
-                  <FontAwesomeIcon icon={faCog} className="sidebar-icon" />{" "}
-                  {/* Using faCog for Risk Analysis */}
+                <a
+                  href="#riskAnalysis"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("riskAnalysis");
+                  }}
+                  className={
+                    currentPage === "riskAnalysis"
+                      ? "sidebar-link active"
+                      : "sidebar-link"
+                  }
+                  
+                >
+                  <FontAwesomeIcon icon={faCog} className="sidebar-icon" />
                   Risk Analysis
                 </a>
               </li>
               <li>
-                <a href="#market-analysis" className="sidebar-link">
-                  <FontAwesomeIcon
-                    icon={faChartLine}
-                    className="sidebar-icon"
-                  />{" "}
-                  {/* Reusing faChartLine for Market Analysis */}
+                <a
+                  href="#marketAnalysis"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("marketAnalysis");
+                  }}
+                  className={
+                    currentPage === "marketAnalysis"
+                      ? "sidebar-link active"
+                      : "sidebar-link"
+                  }
+                  
+                >
+                  <FontAwesomeIcon icon={faChartLine} className="sidebar-icon" />
                   Market Analysis
                 </a>
               </li>
               <li>
-                <a href="#investor-behavior" className="sidebar-link">
-                  <FontAwesomeIcon icon={faUsers} className="sidebar-icon" />{" "}
-                  {/* Using faUsers for Investor Behavior */}
-                  Investor Behavior
+                <a
+                  href="#investerBehaviour"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("investerBehaviour");
+                  }}
+                  className={
+                    currentPage === "investerBehaviour"
+                      ? "sidebar-link active"
+                      : "sidebar-link"
+                  }
+                  
+                >
+                  <FontAwesomeIcon icon={faUsers} className="sidebar-icon" />
+                  Invester Behaviour
                 </a>
               </li>
             </ul>
@@ -88,19 +134,55 @@ const AnalyticsPage = ( {onNavigate} ) => {
             <h4 className="sidebar-title">REPORTS</h4>
             <ul>
               <li>
-                <a href="#monthly-report" className="sidebar-link">
+                <a
+                  href="#monthlyReport"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("monthlyReport");
+                  }}
+                  className={
+                    currentPage === "monthlyReport"
+                      ? "sidebar-link active"
+                      : "sidebar-link"
+                  }
+                  
+                >
                   <FontAwesomeIcon icon={faBook} className="sidebar-icon" />
                   Monthly Report
                 </a>
               </li>
               <li>
-                <a href="#quarterly-report" className="sidebar-link">
+                <a
+                  href="#quaterelyReport"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("quaterelyReport");
+                  }}
+                  className={
+                    currentPage === "quaterelyReport"
+                      ? "sidebar-link active"
+                      : "sidebar-link"
+                  }
+                  
+                >
                   <FontAwesomeIcon icon={faBook} className="sidebar-icon" />
-                  Quarterly Report
+                  Quaterely Report
                 </a>
               </li>
               <li>
-                <a href="#annual-report" className="sidebar-link">
+                <a
+                  href="#annualReport"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("annualReport");
+                  }}
+                  className={
+                    currentPage === "annualReport"
+                      ? "sidebar-link active"
+                      : "sidebar-link"
+                  }
+                  
+                >
                   <FontAwesomeIcon icon={faBook} className="sidebar-icon" />
                   Annual Report
                 </a>
@@ -112,25 +194,56 @@ const AnalyticsPage = ( {onNavigate} ) => {
             <h4 className="sidebar-title">TOOLS</h4>
             <ul>
               <li>
-                <a href="#compare-pools" className="sidebar-link">
+                <a
+                  href="#comparePools"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("comparePools");
+                  }}
+                  className={
+                    currentPage === "comparePools"
+                      ? "sidebar-link active"
+                      : "sidebar-link"
+                  }
+                  
+                >
                   <FontAwesomeIcon icon={faListAlt} className="sidebar-icon" />
                   Compare Pools
                 </a>
               </li>
               <li>
-                <a href="#portfolio-builder" className="sidebar-link">
-                  <FontAwesomeIcon icon={faWallet} className="sidebar-icon" />{" "}
-                  {/* Reusing faWallet for Portfolio Builder */}
+                <a
+                  href="#portfolioBuilder"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("portfolioBuilder");
+                  }}
+                  className={
+                    currentPage === "portfolioBuilder"
+                      ? "sidebar-link active"
+                      : "sidebar-link"
+                  }
+                  
+                >
+                  <FontAwesomeIcon icon={faWallet} className="sidebar-icon" />
                   Portfolio Builder
                 </a>
               </li>
               <li>
-                <a href="#tax-calculator" className="sidebar-link">
-                  <FontAwesomeIcon
-                    icon={faExchangeAlt}
-                    className="sidebar-icon"
-                  />{" "}
-                  {/* Reusing faExchangeAlt for Tax Calculator */}
+                <a
+                  href="#taxCalculator"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("taxCalculator");
+                  }}
+                  className={
+                    currentPage === "taxCalculator"
+                      ? "sidebar-link active"
+                      : "sidebar-link"
+                  }
+                  
+                >
+                  <FontAwesomeIcon icon={faExchangeAlt} className="sidebar-icon" />
                   Tax Calculator
                 </a>
               </li>

@@ -386,4 +386,5 @@
 .poolAndAside {
   display: flex;
   flex-flow: row nowrap;
+  margin-top: 4rem;
 }

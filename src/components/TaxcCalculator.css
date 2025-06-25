@@ -1,0 +1,89 @@
+/* src/pages/TaxCalculator.css */
+.tax-section {
+  min-height: 100vh;
+  padding: 120px 2rem 60px;
+  background-color: #0a0a0a;
+  color: #ffffff;
+}
+
+.tax-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.tax-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.tax-title {
+  font-size: 3rem;
+  font-weight: 200;
+  margin-bottom: 1rem;
+}
+
+.tax-subtitle {
+  font-size: 1.1rem;
+  color: #cccccc;
+  font-weight: 300;
+}
+
+.tax-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.tax-form label {
+  font-size: 1rem;
+  color: #bbbbbb;
+}
+
+.tax-form input[type="number"] {
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  font-size: 1rem;
+  transition: border 0.3s ease;
+}
+
+.tax-form input[type="number"]:focus {
+  border-color: #888;
+  outline: none;
+}
+
+.term-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: #cccccc;
+}
+
+.tax-result {
+  margin-top: 1.5rem;
+  background: rgba(0, 255, 0, 0.05);
+  border: 1px solid rgba(0, 255, 0, 0.2);
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.tax-result h3 {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #ccffcc;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tax-title {
+    font-size: 2.3rem;
+  }
+}

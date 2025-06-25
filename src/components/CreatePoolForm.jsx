@@ -87,145 +87,225 @@ export default function CreatePoolForm({ onNavigate, currentPage }) {
   return (
     <div className="poolAndAside" >
       <aside className="sidebar">
-        <div className="sidebar-section">
-          <h4 className="sidebar-title">QUICK ACCESS</h4>
-          <ul>
-            <li>
-              <a
-                href="#home"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate("dashboard");
-                }}
-                className={
-                  currentPage === "dashboard"
-                    ? "sidebar-link active"
-                    : "sidebar-link"
-                }
-              >
-                <FontAwesomeIcon icon={faHome} className="sidebar-icon" />
-                Home
-              </a>
-            </li>
-            <li>
-              <a
-                href="#my-investments"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate("my-investments");
-                }}
-                className={
-                  currentPage === "my-investments"
-                    ? "sidebar-link active"
-                    : "sidebar-link"
-                }
-              >
-                <FontAwesomeIcon icon={faChartLine} className="sidebar-icon" />
-                My Investments
-              </a>
-            </li>
-            <li>
-              <a
-                href="#watchlist"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate("watchlist");
-                }}
-                className={
-                  currentPage === "watchlist"
-                    ? "sidebar-link active"
-                    : "sidebar-link"
-                }
-              >
-                <FontAwesomeIcon icon={faListAlt} className="sidebar-icon" />
-                Watchlist
-              </a>
-            </li>
-            <li>
-              <a
-                href="#transactions"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate("transactions");
-                }}
-                className={
-                  currentPage === "transactions"
-                    ? "sidebar-link active"
-                    : "sidebar-link"
-                }
-              >
-                <FontAwesomeIcon
-                  icon={faExchangeAlt}
-                  className="sidebar-icon"
-                />
-                Transactions
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div className="sidebar-section">
-          <h4 className="sidebar-title">FUND MANAGER</h4>
-          <ul>
-            <li>
-              <a
-                href="#poolForm"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate("poolForm");
-                }}
-                className={
-                  currentPage === "poolForm "
-                    ? "active sidebar-link"
-                    : "sidebar-link"
-                }
-              >
-                <FontAwesomeIcon icon={faWallet} className="sidebar-icon" />
-                Create Pool
-              </a>
-            </li>
-            <li>
-              <a href="#manage-pools" className="sidebar-link">
-                <FontAwesomeIcon icon={faCog} className="sidebar-icon" />
-                Manage Pools
-              </a>
-            </li>
-            <li>
-              <a href="#performance" className="sidebar-link">
-                <FontAwesomeIcon icon={faChartLine} className="sidebar-icon" />
-                Performance
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div className="sidebar-section">
-          <h4 className="sidebar-title">RESOURCES</h4>
-          <ul>
-            <li>
-              <a href="#documentation" className="sidebar-link">
-                <FontAwesomeIcon icon={faBook} className="sidebar-icon" />
-                Documentation
-              </a>
-            </li>
-            <li>
-              <a href="#help-center" className="sidebar-link">
-                <FontAwesomeIcon
-                  icon={faQuestionCircle}
-                  className="sidebar-icon"
-                />
-                Help Center
-              </a>
-            </li>
-            <li>
-              <a href="#community" className="sidebar-link">
-                <FontAwesomeIcon icon={faComments} className="sidebar-icon" />
-                Community
-              </a>
-            </li>
-          </ul>
-        </div>
-      </aside>
+                <div className="sidebar-section">
+                  <h4 className="sidebar-title">ANALYTICS</h4>
+                  <ul>
+                    <li  >
+                      <a
+                        href="#overview"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          onNavigate("overview");
+                        }}
+                        className={
+                          currentPage === "overview"
+                            ? "sidebar-link active"
+                            : "sidebar-link"
+                        }
+                        
+                      >
+                        <FontAwesomeIcon icon={faHome} className="sidebar-icon" />
+                        Overview
+                      </a>
+      
+                    </li>
+                    <li >
+      
+                        <a
+                        href="#performance"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          onNavigate("performance");
+                        }}
+                        className={
+                          currentPage === "performance"
+                            ? "sidebar-link active"
+                            : "sidebar-link"
+                        }
+                      >
+                        <FontAwesomeIcon icon={faChartLine} className="sidebar-icon" />
+                        Performance
+                      </a>
+      
+      
+                    </li>
+                    <li>
+                      <a
+                        href="#riskAnalysis"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          onNavigate("riskAnalysis");
+                        }}
+                        className={
+                          currentPage === "riskAnalysis"
+                            ? "sidebar-link active"
+                            : "sidebar-link"
+                        }
+                        
+                      >
+                        <FontAwesomeIcon icon={faCog} className="sidebar-icon" />
+                        Risk Analysis
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#marketAnalysis"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          onNavigate("marketAnalysis");
+                        }}
+                        className={
+                          currentPage === "marketAnalysis"
+                            ? "sidebar-link active"
+                            : "sidebar-link"
+                        }
+                        
+                      >
+                        <FontAwesomeIcon icon={faChartLine} className="sidebar-icon" />
+                        Market Analysis
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#investerBehaviour"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          onNavigate("investerBehaviour");
+                        }}
+                        className={
+                          currentPage === "investerBehaviour"
+                            ? "sidebar-link active"
+                            : "sidebar-link"
+                        }
+                        
+                      >
+                        <FontAwesomeIcon icon={faUsers} className="sidebar-icon" />
+                        Invester Behaviour
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+      
+                <div className="sidebar-section">
+                  <h4 className="sidebar-title">REPORTS</h4>
+                  <ul>
+                    <li>
+                      <a
+                        href="#monthlyReport"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          onNavigate("monthlyReport");
+                        }}
+                        className={
+                          currentPage === "monthlyReport"
+                            ? "sidebar-link active"
+                            : "sidebar-link"
+                        }
+                        
+                      >
+                        <FontAwesomeIcon icon={faBook} className="sidebar-icon" />
+                        Monthly Report
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#quaterelyReport"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          onNavigate("quaterelyReport");
+                        }}
+                        className={
+                          currentPage === "quaterelyReport"
+                            ? "sidebar-link active"
+                            : "sidebar-link"
+                        }
+                        
+                      >
+                        <FontAwesomeIcon icon={faBook} className="sidebar-icon" />
+                        Quaterely Report
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#annualReport"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          onNavigate("annualReport");
+                        }}
+                        className={
+                          currentPage === "annualReport"
+                            ? "sidebar-link active"
+                            : "sidebar-link"
+                        }
+                        
+                      >
+                        <FontAwesomeIcon icon={faBook} className="sidebar-icon" />
+                        Annual Report
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+      
+                <div className="sidebar-section">
+                  <h4 className="sidebar-title">TOOLS</h4>
+                  <ul>
+                    <li>
+                      <a
+                        href="#comparePools"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          onNavigate("comparePools");
+                        }}
+                        className={
+                          currentPage === "comparePools"
+                            ? "sidebar-link active"
+                            : "sidebar-link"
+                        }
+                        
+                      >
+                        <FontAwesomeIcon icon={faListAlt} className="sidebar-icon" />
+                        Compare Pools
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#portfolioBuilder"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          onNavigate("portfolioBuilder");
+                        }}
+                        className={
+                          currentPage === "portfolioBuilder"
+                            ? "sidebar-link active"
+                            : "sidebar-link"
+                        }
+                        
+                      >
+                        <FontAwesomeIcon icon={faWallet} className="sidebar-icon" />
+                        Portfolio Builder
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#taxCalculator"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          onNavigate("taxCalculator");
+                        }}
+                        className={
+                          currentPage === "taxCalculator"
+                            ? "sidebar-link active"
+                            : "sidebar-link"
+                        }
+                        
+                      >
+                        <FontAwesomeIcon icon={faExchangeAlt} className="sidebar-icon" />
+                        Tax Calculator
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </aside>
       <div className="createPool">
         <h2>Create Pool</h2>
         <input

@@ -26,7 +26,17 @@ import WatchlistPage from "./components/WatchlistPage";
 import TransactionsPage from "./components/TransactionsPage";
 
 import CreatePoolForm from "./components/CreatePoolForm";
+
 import Performance from "./components/Performance";
+import AnnualReport from './components/AnnualReport';
+import ComparePools from "./components/ComparePools";
+import InvesterBehaviour from './components/InvesterBehaviour';
+import MarketAnalysis from './components/MarketAnalysis';
+import MonthlyReport from './components/MonthlyReport';
+import PortfolioBuilder from './components/PortfolioBuilder';
+import QuaterelyReport from './components/QuaterelyReport';
+import RiskAnalysis from './components/RiskAnalysis';
+import TaxcCalculator from './components/TaxcCalculator';
 
 const App = () => {
   const [currentSection, setCurrentSection] = useState(0);
@@ -142,6 +152,76 @@ const App = () => {
          
         );
 
+        case "annualReport":
+        return (
+          <AnnualReport
+            onNavigate={handleNavigate}
+            currentPage={currentPage}
+          />
+         
+        );
+        case "investerBehaviour":
+        return (
+          <InvesterBehaviour
+            onNavigate={handleNavigate}
+            currentPage={currentPage}
+          />
+         
+        );
+        case "marketAnalysis":
+        return (
+          <MarketAnalysis
+            onNavigate={handleNavigate}
+            currentPage={currentPage}
+          />
+         
+        );
+
+        case "monthlyReport":
+        return (
+          <MonthlyReport
+            onNavigate={handleNavigate}
+            currentPage={currentPage}
+          />
+         
+        );
+        case "portfolioBuilder":
+        return (
+          <PortfolioBuilder
+            onNavigate={handleNavigate}
+            currentPage={currentPage}
+          />
+         
+        );
+        case "quaterelyReport":
+        return (
+          <QuaterelyReport
+            onNavigate={handleNavigate}
+            currentPage={currentPage}
+          />
+         
+        );
+        case "riskAnalysis":
+        return (
+          <RiskAnalysis
+            onNavigate={handleNavigate}
+            currentPage={currentPage}
+          />
+         
+        );
+        case "taxCalculator":
+        return (
+          <TaxcCalculator
+            onNavigate={handleNavigate}
+            currentPage={currentPage}
+          />
+         
+        );
+
+
+
+
+
 
 
 
@@ -152,6 +232,13 @@ const App = () => {
           <PoolsPage onNavigate={handleNavigate} currentPage={currentPage} />
         );
       case "analytics":
+        return (
+          <AnalyticsPage
+            onNavigate={handleNavigate}
+            currentPage={currentPage}
+          />
+        );
+        case "overview":
         return (
           <AnalyticsPage
             onNavigate={handleNavigate}
@@ -175,6 +262,13 @@ const App = () => {
       case "watchlist":
         return (
           <WatchlistPage
+            onNavigate={handleNavigate}
+            currentPage={currentPage}
+          />
+        );
+      case "comparePools":
+        return (
+          <ComparePools
             onNavigate={handleNavigate}
             currentPage={currentPage}
           />
