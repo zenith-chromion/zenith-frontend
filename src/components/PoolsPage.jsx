@@ -112,54 +112,57 @@ const PoolsPage = ({ onNavigate, currentPage }) => {
             <h4 className="sidebar-title">FUND MANAGER</h4>
             <ul>
               <li>
-                  <a
-                    href="#poolForm" 
-                    onClick={(e) => {
-                      e.preventDefault();
-                      onNavigate("poolForm");
-                    }}
-                    className={currentPage === "poolForm " ? "active sidebar-link" : "sidebar-link"}
-                  >
-                    <FontAwesomeIcon icon={faWallet} className="sidebar-icon" />
-                Create Pool
+                <a
+                  href="#poolForm"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("poolForm");
+                  }}
+                  className={
+                    currentPage === "poolForm "
+                      ? "active sidebar-link"
+                      : "sidebar-link"
+                  }
+                >
+                  <FontAwesomeIcon icon={faWallet} className="sidebar-icon" />
+                  Create Pool
                 </a>
-
               </li>
               <li>
                 <a
-                  href="#manage-pools"
+                  href="#yourPools"
                   onClick={(e) => {
                     e.preventDefault();
-                    onNavigate("manage-pools");
+                    onNavigate("yourPools");
                   }} // Make link functional
                   className={
-                    currentPage === "manage-pools"
+                    currentPage === "yourPools"
                       ? "sidebar-link active"
                       : "sidebar-link"
                   } // Apply active class
                 >
                   <FontAwesomeIcon icon={faCog} className="sidebar-icon" />
-                  Manage Pools
+                  Your Pools
                 </a>
               </li>
               <li>
                 <a
-                  href="#performance"
+                  href="#investablePools"
                   onClick={(e) => {
                     e.preventDefault();
-                    onNavigate("performance");
-                  }} // Make link functional
+                    onNavigate("investablePools");
+                  }}
                   className={
-                    currentPage === "performance"
+                    currentPage === "investablePools"
                       ? "sidebar-link active"
                       : "sidebar-link"
-                  } // Apply active class
+                  }
                 >
                   <FontAwesomeIcon
                     icon={faChartLine}
                     className="sidebar-icon"
                   />
-                  Performance
+                  All available pools
                 </a>
               </li>
             </ul>
@@ -733,18 +736,18 @@ const PoolsPage = ({ onNavigate, currentPage }) => {
             </div>
             <div className="cta-right">
               <button className="learn-more-btn">Learn More</button>
-              
+
               <button className="create-pool-btn">
                 <a
-                    href="#poolForm"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      onNavigate("poolForm");
-                    }}
-                    className={currentPage === "poolForm" ? "active" : ""}
-                  >
-                Create Pool
-              </a>
+                  href="#poolForm"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("poolForm");
+                  }}
+                  className={currentPage === "poolForm" ? "active" : ""}
+                >
+                  Create Pool
+                </a>
               </button>
             </div>
           </div>

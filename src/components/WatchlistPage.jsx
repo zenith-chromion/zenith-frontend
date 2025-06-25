@@ -179,21 +179,36 @@ const WatchlistPage = ({ onNavigate, currentPage }) => {
             <ul>
               <li>
                 <a
-                  href="#poolForm" 
+                  href="#poolForm"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate("poolForm");
                   }}
-                  className={currentPage === "poolForm " ? "active sidebar-link" : "sidebar-link"}
+                  className={
+                    currentPage === "poolForm "
+                      ? "active sidebar-link"
+                      : "sidebar-link"
+                  }
                 >
                   <FontAwesomeIcon icon={faWallet} className="sidebar-icon" />
-              Create Pool
-              </a>
+                  Create Pool
+                </a>
               </li>
               <li>
-                <a href="#manage-pools" className="sidebar-link">
+                <a
+                  href="#yourPools"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("yourPools");
+                  }}
+                  className={
+                    currentPage === "yourPools"
+                      ? "sidebar-link active"
+                      : "sidebar-link"
+                  }
+                >
                   <FontAwesomeIcon icon={faCog} className="sidebar-icon" />
-                  Manage Pools
+                  Your Pools
                 </a>
               </li>
               <li>
@@ -202,7 +217,7 @@ const WatchlistPage = ({ onNavigate, currentPage }) => {
                     icon={faChartLine}
                     className="sidebar-icon"
                   />
-                  Performance
+                  All available pools
                 </a>
               </li>
             </ul>

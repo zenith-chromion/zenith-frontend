@@ -28,20 +28,24 @@ import TransactionsPage from "./components/TransactionsPage";
 import CreatePoolForm from "./components/CreatePoolForm";
 
 import Performance from "./components/Performance";
-import AnnualReport from './components/AnnualReport';
+import AnnualReport from "./components/AnnualReport";
 import ComparePools from "./components/ComparePools";
-import InvesterBehaviour from './components/InvesterBehaviour';
-import MarketAnalysis from './components/MarketAnalysis';
-import MonthlyReport from './components/MonthlyReport';
-import PortfolioBuilder from './components/PortfolioBuilder';
-import QuaterelyReport from './components/QuaterelyReport';
-import RiskAnalysis from './components/RiskAnalysis';
-import TaxcCalculator from './components/TaxcCalculator';
+import InvesterBehaviour from "./components/InvesterBehaviour";
+import MarketAnalysis from "./components/MarketAnalysis";
+import MonthlyReport from "./components/MonthlyReport";
+import PortfolioBuilder from "./components/PortfolioBuilder";
+import QuaterelyReport from "./components/QuaterelyReport";
+import RiskAnalysis from "./components/RiskAnalysis";
+import TaxcCalculator from "./components/TaxcCalculator";
+
+import YourPools from "./components/YourPools";
+import InvestablePools from "./components/InvestablePools";
 
 const App = () => {
   const [currentSection, setCurrentSection] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [currentPage, setCurrentPage] = useState("landing"); // Default to landing page
+  const [walletAddress, setWalletAddress] = useState("");
 
   // Create refs for each landing page section
   const heroRef = useRef(null);
@@ -52,6 +56,24 @@ const App = () => {
   // Array of section refs in order, corresponding to the 'sections' array
   const sectionRefs = [heroRef, featuresRef, howItWorksRef, ctaRef];
 
+  useEffect(() => {
+    const getWalletAddress = async () => {
+      if (window.ethereum) {
+        try {
+          const accounts = await window.ethereum.request({
+            method: "eth_requestAccounts",
+          });
+          setWalletAddress(accounts[0]);
+        } catch (error) {
+          console.error("Wallet connection failed:", error);
+        }
+      } else {
+        console.warn("MetaMask is not installed");
+      }
+    };
+
+    getWalletAddress();
+  }, []);
   useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePosition({
@@ -134,96 +156,81 @@ const App = () => {
           />
         );
 
-
-
-        case "poolForm":
+      case "poolForm":
         return (
-         <CreatePoolForm 
-          onNavigate={handleNavigate}
-          currentPage={currentPage}
-         />
-        );
-        case "performance":
-        return (
-          <Performance
+          <CreatePoolForm
             onNavigate={handleNavigate}
             currentPage={currentPage}
           />
-         
+        );
+      case "performance":
+        return (
+          <Performance onNavigate={handleNavigate} currentPage={currentPage} />
         );
 
-        case "annualReport":
+      case "annualReport":
         return (
-          <AnnualReport
-            onNavigate={handleNavigate}
-            currentPage={currentPage}
-          />
-         
+          <AnnualReport onNavigate={handleNavigate} currentPage={currentPage} />
         );
-        case "investerBehaviour":
+      case "investerBehaviour":
         return (
           <InvesterBehaviour
             onNavigate={handleNavigate}
             currentPage={currentPage}
           />
-         
         );
-        case "marketAnalysis":
+      case "marketAnalysis":
         return (
           <MarketAnalysis
             onNavigate={handleNavigate}
             currentPage={currentPage}
           />
-         
         );
 
-        case "monthlyReport":
+      case "monthlyReport":
         return (
           <MonthlyReport
             onNavigate={handleNavigate}
             currentPage={currentPage}
           />
-         
         );
-        case "portfolioBuilder":
+      case "portfolioBuilder":
         return (
           <PortfolioBuilder
             onNavigate={handleNavigate}
             currentPage={currentPage}
           />
-         
         );
-        case "quaterelyReport":
+      case "quaterelyReport":
         return (
           <QuaterelyReport
             onNavigate={handleNavigate}
             currentPage={currentPage}
           />
-         
         );
-        case "riskAnalysis":
+      case "riskAnalysis":
         return (
-          <RiskAnalysis
-            onNavigate={handleNavigate}
-            currentPage={currentPage}
-          />
-         
+          <RiskAnalysis onNavigate={handleNavigate} currentPage={currentPage} />
         );
-        case "taxCalculator":
+      case "taxCalculator":
         return (
           <TaxcCalculator
             onNavigate={handleNavigate}
             currentPage={currentPage}
           />
-         
         );
 
-
-
-
-
-
-
+      case "yourPools":
+        return (
+          <YourPools walletAddress={walletAddress} onNavigate={handleNavigate} currentPage={currentPage} />
+        );
+      case "investablePools":
+        return (
+          <InvestablePools
+            onNavigate={handleNavigate}
+            currentPage={currentPage}
+          />
+        );
 
       case "pools":
         // PoolsPage does not currently use onNavigate/currentPage props for internal nav,
@@ -238,7 +245,7 @@ const App = () => {
             currentPage={currentPage}
           />
         );
-        case "overview":
+      case "overview":
         return (
           <AnalyticsPage
             onNavigate={handleNavigate}
@@ -268,10 +275,7 @@ const App = () => {
         );
       case "comparePools":
         return (
-          <ComparePools
-            onNavigate={handleNavigate}
-            currentPage={currentPage}
-          />
+          <ComparePools onNavigate={handleNavigate} currentPage={currentPage} />
         );
       case "transactions":
         return (
@@ -306,9 +310,7 @@ const App = () => {
             <HowItWorksSection ref={howItWorksRef} />
             {/* CTA Section - Pass the handleNavigate function as onNavigate prop */}
             <CtaSection ref={ctaRef} onNavigate={handleNavigate} />
-            <Footer 
-            onNavigate={handleNavigate}
-            />
+            <Footer onNavigate={handleNavigate} />
           </React.Fragment>
         );
     }

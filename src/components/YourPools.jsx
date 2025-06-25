@@ -1,9 +1,6 @@
-import { useState } from "react";
-import { uploadToIPFS } from "../utils/pinata";
-import { ethers } from "ethers";
-import factoryABI from "../abi/Factory.json";
+import { useEffect, useState } from "react";
+import { getPoolsByManager, deletePool } from "../utils/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { addPoolToDb } from "../utils/api";
 import {
   faHome,
   faChartLine,
@@ -14,94 +11,70 @@ import {
   faUsers,
   faBook,
   faQuestionCircle,
-  faComments, // Sidebar Icons
-  faSearch,
-  faFilter,
-  faPlus,
-  faEye,
-  faEyeSlash,
-  faMinus, // Page Content Icons
+  faComments,
+  faDollarSign,
+  faArrowUp,
+  faArrowDown,
+  faPoundSign,
 } from "@fortawesome/free-solid-svg-icons";
-const FACTORY_ADDRESS = "0xYourFactoryAddressHere";
-import "./CreatePoolForm.css"; // Import its corresponding CSS file
+import "./YourPools.css";
+export default function YourPools({ walletAddress, onNavigate, currentPage }) {
+  const [pools, setPools] = useState([]);
 
-export default function CreatePoolForm({ onNavigate, currentPage }) {
-  const [formData, setFormData] = useState({
-    tokenArbitrum: "",
-    tokenEth: "",
-    tokenPolygon: "",
-    tokenName: "",
-    strategies: "",
-  });
+  useEffect(() => {
+    console.log("YourPools mounted.");
+    if (!walletAddress) {
+      alert("No wallet address provided! Please connect your wallet.");
+      console.warn("walletAddress is undefined or empty.");
+      return;
+    }
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+    const fetchPools = async () => {
+      try {
+        console.log("Calling getPoolsByManager...");
+        const res = await getPoolsByManager(walletAddress);
+        console.log("Response received:", res);
+        setPools(res.data);
+      } catch (err) {
+        alert("Error fetching your pools.");
+        console.error("Error fetching pools:", err);
+      }
+    };
 
-  const handleCreatePool = async () => {
+    fetchPools();
+  }, [walletAddress]);
+
+  const handleDelete = async (poolId) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this pool?"
+    );
+    if (!confirmDelete) return;
+
     try {
-      console.log("Button clicked !");
-      // 1. Prepare data to store on IPFS
-      const metadata = {
-        tokenName: formData.tokenName,
-        tokenAddresses: {
-          arbitrum: formData.tokenArbitrum,
-          ethereum: formData.tokenEth,
-          polygon: formData.tokenPolygon,
-        },
-        strategies: formData.strategies,
-      };
-
-      // 2. Upload to IPFS via Pinata
-      const cid = await uploadToIPFS(metadata);
-      console.log("Uploaded to IPFS, CID:", cid);
-
-      // 3. Connect wallet
-      if (!window.ethereum) throw new Error("Please install MetaMask");
-
-      await window.ethereum.request({ method: "eth_requestAccounts" });
-
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
-
-      const factory = new ethers.Contract(FACTORY_ADDRESS, factoryABI, signer);
-
-      // 4. Call createNewPool
-      const tx = await factory.createNewPool(
-        formData.tokenArbitrum,
-        formData.tokenEth,
-        formData.tokenPolygon,
-        cid
-      );
-
-      await tx.wait();
-      alert("Pool created successfully!");
-
-      // Now add the pool to database .!
-      await addPoolToDb({
-        poolId: tx.hash,
-        fundManager: await signer.getAddress(),
-        tokenName: formData.tokenName,
-        tokenAddresses: {
-          arbitrum: formData.tokenArbitrum,
-          ethereum: formData.tokenEth,
-          polygon: formData.tokenPolygon,
-        },
-        strategies: formData.strategies,
-      });
-      alert("Pool saved to mongo database");
+      console.log("Deleting pool with ID:", poolId);
+      await deletePool(poolId);
+      alert("Pool deleted!");
+      setPools((prev) => prev.filter((pool) => pool.poolId !== poolId));
     } catch (err) {
-      console.error("Detailed error:", err);
-      console.error("Error message:", err?.message);
-      console.error("Error stack:", err?.stack);
-      console.log("Full error object:", JSON.stringify(err, null, 2));
-      alert("Failed to create pool.");
+      alert("Error deleting pool.");
+      console.error("Error deleting pool:", err);
     }
   };
 
+  // if (!walletAddress) {
+  //   return (
+  //     <div style={{ padding: "1rem", marginTop: "7rem" }}>
+  //       <h2>Your Pools</h2>
+  //       <p style={{ color: "red" }}>
+  //         Please connect your wallet to view your pools.
+  //       </p>
+  //     </div>
+  //   );
+  // }
+
   return (
     <div className="poolAndAside">
-      <aside className="sidebar">
+      <aside className="sidebar yourPools">
         <div className="sidebar-section">
           <h4 className="sidebar-title">QUICK ACCESS</h4>
           <ul>
@@ -271,36 +244,27 @@ export default function CreatePoolForm({ onNavigate, currentPage }) {
           </ul>
         </div>
       </aside>
-      <div className="createPool">
-        <h2>Create Pool</h2>
-        <input
-          name="tokenArbitrum"
-          placeholder="Token Address on Arbitrum"
-          onChange={handleChange}
-        />
-        <input
-          name="tokenEth"
-          placeholder="Token Address on Ethereum"
-          onChange={handleChange}
-        />
-        <input
-          name="tokenPolygon"
-          placeholder="Token Address on Polygon"
-          onChange={handleChange}
-        />
-        <input
-          name="tokenName"
-          placeholder="Token Name"
-          onChange={handleChange}
-        />
-        <textarea
-          name="strategies"
-          placeholder="Strategy Details (as JSON or text)"
-          onChange={handleChange}
-        />
-        <button className="create-pool-btn-btn" onClick={handleCreatePool}>
-          Create Pool
-        </button>
+
+
+      <div style={{ padding: "1rem" }} className=" yourPools">
+        <h2>Your Pools</h2>
+        {pools.length === 0 ? (
+          <p>No pools found for this wallet.</p>
+        ) : (
+          <ul>
+            {pools.map((pool) => (
+              <li key={pool.poolfId}>
+                <strong>{pool.tokenName}</strong> | {pool.poolId}
+                <button
+                  onClick={() => handleDelete(pool.poolId)}
+                  style={{ marginLeft: "10px" }}
+                >
+                  Delete
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );

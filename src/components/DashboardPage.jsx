@@ -114,30 +114,56 @@ const DashboardPage = ({ onNavigate, currentPage }) => {
             <ul>
               <li>
                 <a
-                    href="#poolForm" 
-                    onClick={(e) => {
-                      e.preventDefault();
-                      onNavigate("poolForm");
-                    }}
-                    className={currentPage === "poolForm " ? "active sidebar-link" : "sidebar-link"}
-                  >
-                    <FontAwesomeIcon icon={faWallet} className="sidebar-icon" />
-                Create Pool
+                  href="#poolForm"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("poolForm");
+                  }}
+                  className={
+                    currentPage === "poolForm "
+                      ? "active sidebar-link"
+                      : "sidebar-link"
+                  }
+                >
+                  <FontAwesomeIcon icon={faWallet} className="sidebar-icon" />
+                  Create Pool
                 </a>
               </li>
               <li>
-                <a href="#manage-pools" className="sidebar-link">
+                <a
+                  href="#yourPools"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("yourPools");
+                  }}
+                  className={
+                    currentPage === "yourPools"
+                      ? "sidebar-link active"
+                      : "sidebar-link"
+                  }
+                >
                   <FontAwesomeIcon icon={faCog} className="sidebar-icon" />
-                  Manage Pools
+                  Your Pools
                 </a>
               </li>
               <li>
-                <a href="#performance" className="sidebar-link">
+                <a
+                  href="#investablePools"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("investablePools");
+                  }}
+                  className={
+                    currentPage === "investablePools"
+                      ? "sidebar-link active"
+                      : "sidebar-link"
+                  }
+                >
                   <FontAwesomeIcon
                     icon={faChartLine}
                     className="sidebar-icon"
                   />
-                  Performance
+                  All available pools
                 </a>
               </li>
             </ul>
@@ -148,8 +174,10 @@ const DashboardPage = ({ onNavigate, currentPage }) => {
             <ul>
               <li>
                 <a href="#documentation" className="sidebar-link">
-                  <FontAwesomeIcon icon={faBook} className="sidebar-icon" 
-                  onClick={() => onNavigate("documentation")}
+                  <FontAwesomeIcon
+                    icon={faBook}
+                    className="sidebar-icon"
+                    onClick={() => onNavigate("documentation")}
                   />
                   Documentation
                 </a>

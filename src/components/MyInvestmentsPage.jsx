@@ -332,32 +332,57 @@ const MyInvestmentsPage = ({ onNavigate, currentPage }) => {
             <h4 className="sidebar-title">FUND MANAGER</h4>
             <ul>
               <li>
-
                 <a
-                  href="#poolForm" 
+                  href="#poolForm"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate("poolForm");
                   }}
-                  className={currentPage === "poolForm " ? "active sidebar-link" : "sidebar-link"}
+                  className={
+                    currentPage === "poolForm "
+                      ? "active sidebar-link"
+                      : "sidebar-link"
+                  }
                 >
                   <FontAwesomeIcon icon={faWallet} className="sidebar-icon" />
-              Create Pool
-              </a>
-              </li>
-              <li>
-                <a href="#manage-pools" className="sidebar-link">
-                  <FontAwesomeIcon icon={faCog} className="sidebar-icon" />
-                  Manage Pools
+                  Create Pool
                 </a>
               </li>
               <li>
-                <a href="#performance" className="sidebar-link">
+                <a
+                  href="#yourPools"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("yourPools");
+                  }}
+                  className={
+                    currentPage === "yourPools"
+                      ? "sidebar-link active"
+                      : "sidebar-link"
+                  }
+                >
+                  <FontAwesomeIcon icon={faCog} className="sidebar-icon" />
+                  Your Pools
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#investablePools"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("investablePools");
+                  }}
+                  className={
+                    currentPage === "investablePools"
+                      ? "sidebar-link active"
+                      : "sidebar-link"
+                  }
+                >
                   <FontAwesomeIcon
                     icon={faChartLine}
                     className="sidebar-icon"
                   />
-                  Performance
+                  All available pools
                 </a>
               </li>
             </ul>

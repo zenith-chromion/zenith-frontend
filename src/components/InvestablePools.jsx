@@ -1,9 +1,6 @@
-import { useState } from "react";
-import { uploadToIPFS } from "../utils/pinata";
-import { ethers } from "ethers";
-import factoryABI from "../abi/Factory.json";
+import { useEffect, useState } from "react";
+import { getAllPools } from "../utils/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { addPoolToDb } from "../utils/api";
 import {
   faHome,
   faChartLine,
@@ -22,91 +19,22 @@ import {
   faEyeSlash,
   faMinus, // Page Content Icons
 } from "@fortawesome/free-solid-svg-icons";
-const FACTORY_ADDRESS = "0xYourFactoryAddressHere";
-import "./CreatePoolForm.css"; // Import its corresponding CSS file
+export default function InvestablePools({ onNavigate, currentPage }) {
+  const [pools, setPools] = useState([]);
 
-export default function CreatePoolForm({ onNavigate, currentPage }) {
-  const [formData, setFormData] = useState({
-    tokenArbitrum: "",
-    tokenEth: "",
-    tokenPolygon: "",
-    tokenName: "",
-    strategies: "",
-  });
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleCreatePool = async () => {
-    try {
-      console.log("Button clicked !");
-      // 1. Prepare data to store on IPFS
-      const metadata = {
-        tokenName: formData.tokenName,
-        tokenAddresses: {
-          arbitrum: formData.tokenArbitrum,
-          ethereum: formData.tokenEth,
-          polygon: formData.tokenPolygon,
-        },
-        strategies: formData.strategies,
-      };
-
-      // 2. Upload to IPFS via Pinata
-      const cid = await uploadToIPFS(metadata);
-      console.log("Uploaded to IPFS, CID:", cid);
-
-      // 3. Connect wallet
-      if (!window.ethereum) throw new Error("Please install MetaMask");
-
-      await window.ethereum.request({ method: "eth_requestAccounts" });
-
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
-
-      const factory = new ethers.Contract(FACTORY_ADDRESS, factoryABI, signer);
-
-      // 4. Call createNewPool
-      const tx = await factory.createNewPool(
-        formData.tokenArbitrum,
-        formData.tokenEth,
-        formData.tokenPolygon,
-        cid
-      );
-
-      await tx.wait();
-      alert("Pool created successfully!");
-
-      // Now add the pool to database .!
-      await addPoolToDb({
-        poolId: tx.hash,
-        fundManager: await signer.getAddress(),
-        tokenName: formData.tokenName,
-        tokenAddresses: {
-          arbitrum: formData.tokenArbitrum,
-          ethereum: formData.tokenEth,
-          polygon: formData.tokenPolygon,
-        },
-        strategies: formData.strategies,
-      });
-      alert("Pool saved to mongo database");
-    } catch (err) {
-      console.error("Detailed error:", err);
-      console.error("Error message:", err?.message);
-      console.error("Error stack:", err?.stack);
-      console.log("Full error object:", JSON.stringify(err, null, 2));
-      alert("Failed to create pool.");
-    }
-  };
+  useEffect(() => {
+    getAllPools()
+      .then((res) => setPools(res.data))
+      .catch((err) => console.error("Error fetching pools:", err));
+  }, []);
 
   return (
     <div className="poolAndAside">
-      <aside className="sidebar">
+      <aside className="sidebar yourPools">
         <div className="sidebar-section">
           <h4 className="sidebar-title">QUICK ACCESS</h4>
           <ul>
             <li>
-              {/* Home link: Navigates to the main dashboard overview */}
               <a
                 href="#home"
                 onClick={(e) => {
@@ -124,7 +52,6 @@ export default function CreatePoolForm({ onNavigate, currentPage }) {
               </a>
             </li>
             <li>
-              {/* My Investments link: Navigates to My Investments page */}
               <a
                 href="#my-investments"
                 onClick={(e) => {
@@ -142,7 +69,6 @@ export default function CreatePoolForm({ onNavigate, currentPage }) {
               </a>
             </li>
             <li>
-              {/* Watchlist link: Navigates to Watchlist page */}
               <a
                 href="#watchlist"
                 onClick={(e) => {
@@ -160,7 +86,6 @@ export default function CreatePoolForm({ onNavigate, currentPage }) {
               </a>
             </li>
             <li>
-              {/* Transactions link: Navigates to Transactions page */}
               <a
                 href="#transactions"
                 onClick={(e) => {
@@ -221,18 +146,7 @@ export default function CreatePoolForm({ onNavigate, currentPage }) {
               </a>
             </li>
             <li>
-              <a
-                href="#investablePools"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate("investablePools");
-                }}
-                className={
-                  currentPage === "investablePools"
-                    ? "sidebar-link active"
-                    : "sidebar-link"
-                }
-              >
+              <a href="#performance" className="sidebar-link">
                 <FontAwesomeIcon icon={faChartLine} className="sidebar-icon" />
                 All available pools
               </a>
@@ -245,11 +159,7 @@ export default function CreatePoolForm({ onNavigate, currentPage }) {
           <ul>
             <li>
               <a href="#documentation" className="sidebar-link">
-                <FontAwesomeIcon
-                  icon={faBook}
-                  className="sidebar-icon"
-                  onClick={() => onNavigate("documentation")}
-                />
+                <FontAwesomeIcon icon={faBook} className="sidebar-icon" />
                 Documentation
               </a>
             </li>
@@ -271,36 +181,22 @@ export default function CreatePoolForm({ onNavigate, currentPage }) {
           </ul>
         </div>
       </aside>
-      <div className="createPool">
-        <h2>Create Pool</h2>
-        <input
-          name="tokenArbitrum"
-          placeholder="Token Address on Arbitrum"
-          onChange={handleChange}
-        />
-        <input
-          name="tokenEth"
-          placeholder="Token Address on Ethereum"
-          onChange={handleChange}
-        />
-        <input
-          name="tokenPolygon"
-          placeholder="Token Address on Polygon"
-          onChange={handleChange}
-        />
-        <input
-          name="tokenName"
-          placeholder="Token Name"
-          onChange={handleChange}
-        />
-        <textarea
-          name="strategies"
-          placeholder="Strategy Details (as JSON or text)"
-          onChange={handleChange}
-        />
-        <button className="create-pool-btn-btn" onClick={handleCreatePool}>
-          Create Pool
-        </button>
+      <div >
+        <div>
+          <h2>All Pools</h2>
+          {pools.length === 0 ? (
+            <p>No investable pools available.</p>
+          ) : (
+            <ul>
+              {pools.map((pool) => (
+                <li key={pool.poolId}>
+                  <strong>{pool.tokenName}</strong> — Strategies:{" "}
+                  {pool.strategies}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
     </div>
   );
