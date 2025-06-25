@@ -26,6 +26,7 @@ import WatchlistPage from "./components/WatchlistPage";
 import TransactionsPage from "./components/TransactionsPage";
 
 import CreatePoolForm from "./components/CreatePoolForm";
+import Performance from "./components/Performance";
 
 const App = () => {
   const [currentSection, setCurrentSection] = useState(0);
@@ -132,6 +133,15 @@ const App = () => {
           currentPage={currentPage}
          />
         );
+        case "performance":
+        return (
+          <Performance
+            onNavigate={handleNavigate}
+            currentPage={currentPage}
+          />
+         
+        );
+
 
 
 
@@ -202,7 +212,9 @@ const App = () => {
             <HowItWorksSection ref={howItWorksRef} />
             {/* CTA Section - Pass the handleNavigate function as onNavigate prop */}
             <CtaSection ref={ctaRef} onNavigate={handleNavigate} />
-            <Footer />
+            <Footer 
+            onNavigate={handleNavigate}
+            />
           </React.Fragment>
         );
     }

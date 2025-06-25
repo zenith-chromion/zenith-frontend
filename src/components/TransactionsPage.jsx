@@ -171,10 +171,18 @@ const TransactionsPage = ({ onNavigate, currentPage }) => {
             <h4 className="sidebar-title">FUND MANAGER</h4>
             <ul>
               <li>
-                <a href="#create-pool" className="sidebar-link">
+
+                <a
+                  href="#poolForm" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("poolForm");
+                  }}
+                  className={currentPage === "poolForm " ? "active sidebar-link" : "sidebar-link"}
+                >
                   <FontAwesomeIcon icon={faWallet} className="sidebar-icon" />
-                  Create Pool
-                </a>
+              Create Pool
+              </a>
               </li>
               <li>
                 <a href="#manage-pools" className="sidebar-link">
@@ -199,7 +207,7 @@ const TransactionsPage = ({ onNavigate, currentPage }) => {
             <ul>
               <li>
                 <a href="#documentation" className="sidebar-link">
-                  <FontAwesomeIcon icon={faBook} className="sidebar-icon" />
+                  <FontAwesomeIcon icon={faBook} className="sidebar-icon" onClick={() => onNavigate("documentation")} />
                   Documentation
                 </a>
               </li>

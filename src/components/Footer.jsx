@@ -2,7 +2,7 @@
 import React from "react";
 import "./Footer.css"; // Import its corresponding CSS file
 
-const Footer = () => {
+const Footer = ( {onNavigate} ) => {
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -21,7 +21,7 @@ const Footer = () => {
           </div>
           <div className="footer-column">
             <h4>Developers</h4>
-            <a href="#">Documentation</a>
+            <a onClick={() => onNavigate("documentation")} style={{ cursor: "pointer" }}  >Documentation</a>
             <a href="#">API</a>
             <a href="#">GitHub</a>
           </div>

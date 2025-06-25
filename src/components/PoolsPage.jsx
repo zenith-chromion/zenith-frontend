@@ -112,21 +112,18 @@ const PoolsPage = ({ onNavigate, currentPage }) => {
             <h4 className="sidebar-title">FUND MANAGER</h4>
             <ul>
               <li>
-                <a
-                  href="#create-pool"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onNavigate("create-pool");
-                  }} // Make link functional
-                  className={
-                    currentPage === "create-pool"
-                      ? "sidebar-link active"
-                      : "sidebar-link"
-                  } // Apply active class
-                >
-                  <FontAwesomeIcon icon={faWallet} className="sidebar-icon" />
-                  Create Pool
+                  <a
+                    href="#poolForm" 
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate("poolForm");
+                    }}
+                    className={currentPage === "poolForm " ? "active sidebar-link" : "sidebar-link"}
+                  >
+                    <FontAwesomeIcon icon={faWallet} className="sidebar-icon" />
+                Create Pool
                 </a>
+
               </li>
               <li>
                 <a

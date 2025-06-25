@@ -26,7 +26,7 @@ import {
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 
-const AnalyticsPage = () => {
+const AnalyticsPage = ( {onNavigate} ) => {
   return (
     <div className="analytics-page-container">
       <div className="analytics-content-area">

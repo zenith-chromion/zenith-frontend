@@ -2,11 +2,29 @@ import { useState } from "react";
 import { uploadToIPFS } from "../utils/pinata";
 import { ethers } from "ethers";
 import factoryABI from "../abi/Factory.json";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHome,
+  faChartLine,
+  faWallet,
+  faListAlt,
+  faExchangeAlt,
+  faCog,
+  faUsers,
+  faBook,
+  faQuestionCircle,
+  faComments, // Sidebar Icons
+  faSearch,
+  faFilter,
+  faPlus,
+  faEye,
+  faEyeSlash,
+  faMinus, // Page Content Icons
+} from "@fortawesome/free-solid-svg-icons";
 const FACTORY_ADDRESS = "0xYourFactoryAddressHere";
 import "./CreatePoolForm.css"; // Import its corresponding CSS file
 
-export default function CreatePoolForm() {
+export default function CreatePoolForm({ onNavigate, currentPage }) {
   const [formData, setFormData] = useState({
     tokenArbitrum: "",
     tokenEth: "",
@@ -21,7 +39,7 @@ export default function CreatePoolForm() {
 
   const handleCreatePool = async () => {
     try {
-        console.log("Button clicked !");
+      console.log("Button clicked !");
       // 1. Prepare data to store on IPFS
       const metadata = {
         tokenName: formData.tokenName,
@@ -59,44 +77,186 @@ export default function CreatePoolForm() {
       alert("Pool created successfully!");
     } catch (err) {
       console.error("Detailed error:", err);
-        console.error("Error message:", err?.message);
-        console.error("Error stack:", err?.stack);
-        console.log("Full error object:", JSON.stringify(err, null, 2));
+      console.error("Error message:", err?.message);
+      console.error("Error stack:", err?.stack);
+      console.log("Full error object:", JSON.stringify(err, null, 2));
       alert("Failed to create pool.");
     }
   };
 
   return (
-    <div className="createPool" >
-      <h2>Create Pool</h2>
-      <input
-        name="tokenArbitrum"
-        placeholder="Token Address on Arbitrum"
-        onChange={handleChange}
-      />
-      <input
-        name="tokenEth"
-        placeholder="Token Address on Ethereum"
-        onChange={handleChange}
-      />
-      <input
-        name="tokenPolygon"
-        placeholder="Token Address on Polygon"
-        onChange={handleChange}
-      />
-      <input
-        name="tokenName"
-        placeholder="Token Name"
-        onChange={handleChange}
-      />
-      <textarea
-        name="strategies"
-        placeholder="Strategy Details (as JSON or text)"
-        onChange={handleChange}
-      />
-      <button className="create-pool-btn-btn" onClick={handleCreatePool}>
-        Create Pool
-      </button>
+    <div className="poolAndAside" >
+      <aside className="sidebar">
+        <div className="sidebar-section">
+          <h4 className="sidebar-title">QUICK ACCESS</h4>
+          <ul>
+            <li>
+              <a
+                href="#home"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate("dashboard");
+                }}
+                className={
+                  currentPage === "dashboard"
+                    ? "sidebar-link active"
+                    : "sidebar-link"
+                }
+              >
+                <FontAwesomeIcon icon={faHome} className="sidebar-icon" />
+                Home
+              </a>
+            </li>
+            <li>
+              <a
+                href="#my-investments"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate("my-investments");
+                }}
+                className={
+                  currentPage === "my-investments"
+                    ? "sidebar-link active"
+                    : "sidebar-link"
+                }
+              >
+                <FontAwesomeIcon icon={faChartLine} className="sidebar-icon" />
+                My Investments
+              </a>
+            </li>
+            <li>
+              <a
+                href="#watchlist"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate("watchlist");
+                }}
+                className={
+                  currentPage === "watchlist"
+                    ? "sidebar-link active"
+                    : "sidebar-link"
+                }
+              >
+                <FontAwesomeIcon icon={faListAlt} className="sidebar-icon" />
+                Watchlist
+              </a>
+            </li>
+            <li>
+              <a
+                href="#transactions"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate("transactions");
+                }}
+                className={
+                  currentPage === "transactions"
+                    ? "sidebar-link active"
+                    : "sidebar-link"
+                }
+              >
+                <FontAwesomeIcon
+                  icon={faExchangeAlt}
+                  className="sidebar-icon"
+                />
+                Transactions
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div className="sidebar-section">
+          <h4 className="sidebar-title">FUND MANAGER</h4>
+          <ul>
+            <li>
+              <a
+                href="#poolForm"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate("poolForm");
+                }}
+                className={
+                  currentPage === "poolForm "
+                    ? "active sidebar-link"
+                    : "sidebar-link"
+                }
+              >
+                <FontAwesomeIcon icon={faWallet} className="sidebar-icon" />
+                Create Pool
+              </a>
+            </li>
+            <li>
+              <a href="#manage-pools" className="sidebar-link">
+                <FontAwesomeIcon icon={faCog} className="sidebar-icon" />
+                Manage Pools
+              </a>
+            </li>
+            <li>
+              <a href="#performance" className="sidebar-link">
+                <FontAwesomeIcon icon={faChartLine} className="sidebar-icon" />
+                Performance
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div className="sidebar-section">
+          <h4 className="sidebar-title">RESOURCES</h4>
+          <ul>
+            <li>
+              <a href="#documentation" className="sidebar-link">
+                <FontAwesomeIcon icon={faBook} className="sidebar-icon" />
+                Documentation
+              </a>
+            </li>
+            <li>
+              <a href="#help-center" className="sidebar-link">
+                <FontAwesomeIcon
+                  icon={faQuestionCircle}
+                  className="sidebar-icon"
+                />
+                Help Center
+              </a>
+            </li>
+            <li>
+              <a href="#community" className="sidebar-link">
+                <FontAwesomeIcon icon={faComments} className="sidebar-icon" />
+                Community
+              </a>
+            </li>
+          </ul>
+        </div>
+      </aside>
+      <div className="createPool">
+        <h2>Create Pool</h2>
+        <input
+          name="tokenArbitrum"
+          placeholder="Token Address on Arbitrum"
+          onChange={handleChange}
+        />
+        <input
+          name="tokenEth"
+          placeholder="Token Address on Ethereum"
+          onChange={handleChange}
+        />
+        <input
+          name="tokenPolygon"
+          placeholder="Token Address on Polygon"
+          onChange={handleChange}
+        />
+        <input
+          name="tokenName"
+          placeholder="Token Name"
+          onChange={handleChange}
+        />
+        <textarea
+          name="strategies"
+          placeholder="Strategy Details (as JSON or text)"
+          onChange={handleChange}
+        />
+        <button className="create-pool-btn-btn" onClick={handleCreatePool}>
+          Create Pool
+        </button>
+      </div>
     </div>
   );
 }

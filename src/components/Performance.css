@@ -1,0 +1,139 @@
+/* src/pages/Performance.css */
+.performance-section {
+  min-height: 100vh;
+  padding: 120px 2rem 60px;
+  background-color: #0a0a0a;
+  color: #ffffff;
+}
+
+.performance-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.performance-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.performance-title {
+  font-size: 3rem;
+  font-weight: 200;
+  margin-bottom: 1rem;
+}
+
+.performance-subtitle {
+  font-size: 1.1rem;
+  color: #cccccc;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.performance-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+.performance-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 2rem;
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.performance-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-header h2 {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.tier-badge {
+  padding: 0.4rem 0.9rem;
+  border-radius: 30px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: #ffffff10;
+  border: 1px solid #ffffff20;
+}
+
+.strategy-label {
+  font-size: 0.95rem;
+  color: #a0a0a0;
+  margin: 0.5rem 0 1.5rem;
+}
+
+.metrics {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.metric-label {
+  font-size: 0.85rem;
+  color: #999999;
+  margin-bottom: 0.2rem;
+}
+
+.metric-value {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.positive {
+  color: #c5f5c3;
+}
+
+.negative {
+  color: #ffbdbd;
+}
+
+.zk-status {
+  padding: 0.6rem 1rem;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 6px;
+}
+
+.verified {
+  background: rgba(110, 255, 150, 0.08);
+  color: #82f1a8;
+  border: 1px solid rgba(110, 255, 150, 0.15);
+}
+
+.unverified {
+  background: rgba(255, 90, 90, 0.05);
+  color: #ffa8a8;
+  border: 1px solid rgba(255, 90, 90, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .performance-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .performance-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .performance-title {
+    font-size: 2.2rem;
+  }
+}
