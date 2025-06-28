@@ -63,7 +63,7 @@ export default function Header({ onNavigate, currentPage }) {
     }
   }, [account]);
 
-  // ⿡ Connect wallet
+  // 1️⃣ Connect wallet
   const connectWallet = async () => {
     if (!window.ethereum) {
       alert("Please install MetaMask!");
@@ -81,7 +81,7 @@ export default function Header({ onNavigate, currentPage }) {
     }
   };
 
-  // ⿢ Switch network
+  // 2️⃣ Switch network
   const switchNetwork = async (chainId) => {
     try {
       await window.ethereum.request({
@@ -101,7 +101,7 @@ export default function Header({ onNavigate, currentPage }) {
     }
   };
 
-  // ⿣ Handle user selecting a network
+  // 3️⃣ Handle user selecting a network
   const handleNetworkSelect = (network) => {
     let chainId = "";
     switch (network) {
@@ -206,7 +206,7 @@ export default function Header({ onNavigate, currentPage }) {
                     <span className="network-name">
                       {getCurrentNetworkInfo().name}
                     </span>
-                    <span className={dropdown-arrow ${isDropdownOpen ? 'open' : ''}}>
+                    <span className={`dropdown-arrow ${isDropdownOpen ? 'open' : ''}`}>
                       ▼
                     </span>
                   </button>
@@ -216,10 +216,10 @@ export default function Header({ onNavigate, currentPage }) {
                       {Object.entries(networks).map(([chainId, network]) => (
                         <button
                           key={chainId}
-                          className={network-option ${currentNetwork === chainId ? 'active' : ''}}
+                          className={`network-option ${currentNetwork === chainId ? 'active' : ''}`}
                           onClick={() => switchNetwork(chainId)}
                           style={{
-                            borderLeft: 3px solid ${network.color},
+                            borderLeft: `3px solid ${network.color}`,
                           }}
                         >
                           <span className="network-icon">{network.icon}</span>
@@ -374,5 +374,5 @@ export default function Header({ onNavigate, currentPage }) {
         }
       `}</style>
     </header>
-  );
+  );
 }
