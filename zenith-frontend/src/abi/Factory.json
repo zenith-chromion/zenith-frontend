@@ -1,0 +1,80 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [
+      {
+        "name": "_deployerArbitrumSepolia",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "_deployerEthSepolia",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "_deployerPolygon",
+        "type": "address",
+        "internalType": "address"
+      },
+      { "name": "_ccipSender", "type": "address", "internalType": "address" }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "createNewPool",
+    "inputs": [
+      {
+        "name": "_tokenArbitrum",
+        "type": "address",
+        "internalType": "address"
+      },
+      { "name": "_tokenEth", "type": "address", "internalType": "address" },
+      {
+        "name": "_tokenPolygon",
+        "type": "address",
+        "internalType": "address"
+      },
+      { "name": "_cidHash", "type": "string", "internalType": "string" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "deployerArbitrumSepolia",
+    "inputs": [],
+    "outputs": [
+      { "name": "", "type": "address", "internalType": "contract Deployer" }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "deployerEthSepolia",
+    "inputs": [],
+    "outputs": [
+      { "name": "", "type": "address", "internalType": "contract Deployer" }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "deployerPolygon",
+    "inputs": [],
+    "outputs": [
+      { "name": "", "type": "address", "internalType": "contract Deployer" }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "i_ccipSender",
+    "inputs": [],
+    "outputs": [
+      { "name": "", "type": "address", "internalType": "contract CCIPSender" }
+    ],
+    "stateMutability": "view"
+  }
+]

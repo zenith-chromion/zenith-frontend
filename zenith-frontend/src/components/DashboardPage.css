@@ -1,0 +1,709 @@
+/* /* src/components/DashboardPage/DashboardPage.css */
+
+/* --- Global Dashboard Layout --- */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background: #0a0a0a; /* True black background */
+  color: #ffffff; /* Default text color */
+}
+
+.dashboard-content-area {
+  display: flex;
+  flex-grow: 1; /* Allows it to take remaining space */
+  padding-top: 80px; /* Space for fixed header, adjust if header is very tall */
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 2rem;
+  background-color: #0a0a0a; /* Ensure main content area is black */
+  overflow-y: auto; /* Enable scrolling for main content if it overflows */
+}
+
+/* --- Sidebar --- */
+.sidebar {
+  width: 250px; /* Fixed width for sidebar */
+  background-color: #1a1a1a; /* Darker grey for sidebar */
+  padding: 2rem 1.5rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0; /* Prevent sidebar from shrinking */
+  position: sticky; /* Makes sidebar stick on scroll */
+  top: 80px; /* Align with header bottom */
+  height: calc(100vh - 80px); /* Fill remaining viewport height */
+  overflow-y: auto; /* Scrollable sidebar if content overflows */
+}
+
+.sidebar-section {
+  margin-bottom: 2rem;
+}
+
+.sidebar-title {
+  color: #a0a0a0; /* Muted grey for titles */
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #e0e0e0; /* Lighter grey for links */
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease;
+  font-weight: 400;
+  font-size: 0.95rem;
+}
+
+.sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.05); /* Subtle hover background */
+  color: #ffffff;
+}
+
+.sidebar-link.active {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Slightly more prominent active background */
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.sidebar-icon {
+  font-size: 1rem;
+  color: #888888; /* Grey icon color */
+  transition: color 0.2s ease;
+}
+
+.sidebar-link.active .sidebar-icon,
+.sidebar-link:hover .sidebar-icon {
+  color: #ffffff; /* White icon color on active/hover */
+}
+
+/* --- Summary Cards Grid --- */
+.summary-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.summary-card {
+  background-color: #1c1c1c; /* Darker grey for cards */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+/* Specific icon wrapper colors (adjust to fit grey theme) */
+.card-icon-wrapper.primary-icon {
+  background-color: rgba(136, 136, 136, 0.2);
+  color: #888888;
+} /* Lighter grey */
+.card-icon-wrapper.secondary-icon {
+  background-color: rgba(136, 136, 136, 0.2);
+  color: #888888;
+}
+.card-icon-wrapper.tertiary-icon {
+  background-color: rgba(136, 136, 136, 0.2);
+  color: #888888;
+}
+.card-icon-wrapper.quaternary-icon {
+  background-color: rgba(136, 136, 136, 0.2);
+  color: #888888;
+}
+
+.card-label {
+  font-size: 0.9rem;
+  color: #a0a0a0; /* Muted grey for labels */
+  margin-bottom: 0.5rem;
+}
+
+.card-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.percentage-positive {
+  color: #2ecc71; /* Green for positive */
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.percentage-negative {
+  color: #e74c3c; /* Red for negative */
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* --- General Section Styling --- */
+.dashboard-section {
+  background-color: #1c1c1c; /* Darker grey for sections */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.view-all-link {
+  color: #888888; /* Grey for "View all" link */
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.view-all-link:hover {
+  color: #ffffff;
+}
+
+/* --- Performance Overview --- */
+.chart-filters {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.filter-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  color: #a0a0a0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.85rem;
+}
+
+.filter-btn:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
+
+.filter-btn.active {
+  background-color: rgba(255, 255, 255, 0.1); /* Active grey */
+  color: #ffffff;
+  border-color: #888888;
+}
+
+.chart-placeholder {
+  position: relative; /* Needed for absolute positioning of chart elements */
+  width: 100%;
+  height: 250px; /* Fixed height for the chart area */
+  background-color: #121212; /* Darker grey for chart background */
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-end; /* Align x-axis labels to bottom */
+  justify-content: flex-start; /* Align y-axis labels to left */
+  padding: 1.5rem 1rem 1rem 1rem; /* Adjust padding for labels */
+  overflow: hidden; /* Ensure chart elements stay within bounds */
+}
+
+.chart-y-axis {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: calc(100% - 30px); /* Adjust height to exclude x-axis labels */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem 0.5rem;
+  color: #a0a0a0;
+  font-size: 0.8rem;
+  text-align: right;
+  width: 50px; /* Space for Y-axis labels */
+}
+.chart-y-axis span {
+  height: 1px; /* Visual guide for percentage lines */
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+  line-height: 1;
+  padding-right: 5px; /* Space from chart area */
+}
+.chart-y-axis span:first-child {
+  border-bottom: none;
+} /* No dashed line for top label */
+.chart-y-axis span:last-child {
+  border-bottom: none;
+} /* No dashed line for bottom label */
+
+.chart-area {
+  position: absolute;
+  left: 50px; /* Offset by y-axis width */
+  top: 0;
+  width: calc(100% - 50px); /* Remaining width for chart */
+  height: calc(
+    100% - 30px
+  ); /* Remaining height for chart, excluding x-axis labels */
+  padding: 1rem 1rem 0 1rem; /* Adjust padding for chart content */
+  display: flex;
+  flex-direction: column-reverse; /* To position points from bottom up */
+}
+
+.chart-x-axis {
+  position: absolute;
+  bottom: 0;
+  left: 50px; /* Align with chart area */
+  width: calc(100% - 50px);
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+  color: #a0a0a0;
+  font-size: 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.chart-x-axis span {
+  width: 14%; /* Distribute labels evenly for 7 months */
+  text-align: center;
+}
+
+/* Hardcoded Chart Line and Points */
+.chart-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    /* Jan */ #2ecc71 0%,
+    /* Feb */ #2ecc71 16.6%,
+    /* Mar */ #2ecc71 33.3%,
+    /* Apr */ #2ecc71 50%,
+    /* May */ #2ecc71 66.6%,
+    /* Jun */ #2ecc71 83.3%,
+    /* Jul */ #2ecc71 100%
+  );
+  clip-path: polygon(
+    0% 90%,
+    /* Jan (approx 3%) */ 16.6% 80%,
+    /* Feb (approx 6%) */ 33.3% 70%,
+    /* Mar (approx 9%) */ 50% 75%,
+    /* Apr (approx 8%) */ 66.6% 60%,
+    /* May (approx 12%) */ 83.3% 40%,
+    /* Jun (approx 15%) */ 100% 45%,
+    /* Jul (approx 14%) */ 100% 100%,
+    0% 100%
+  );
+  opacity: 0.2; /* Subtly shaded area below the line */
+  transition: all 0.5s ease-out; /* Smooth transition for clip-path */
+}
+
+/* Points for the hardcoded chart */
+.chart-point {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #2ecc71; /* Green point */
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(46, 204, 113, 0.5);
+  z-index: 1; /* Ensure points are above the line area */
+  transform: translate(-50%, -50%); /* Center the point */
+}
+
+/* Adjust top/left for each point based on the clip-path percentages */
+.chart-point.p1 {
+  left: 0%;
+  bottom: calc(90% - 15px);
+} /* Jan (bottom value is from bottom of chart area) */
+.chart-point.p2 {
+  left: 16.6%;
+  bottom: calc(80% - 15px);
+} /* Feb */
+.chart-point.p3 {
+  left: 33.3%;
+  bottom: calc(70% - 15px);
+} /* Mar */
+.chart-point.p4 {
+  left: 50%;
+  bottom: calc(75% - 15px);
+} /* Apr */
+.chart-point.p5 {
+  left: 66.6%;
+  bottom: calc(60% - 15px);
+} /* May */
+.chart-point.p6 {
+  left: 83.3%;
+  bottom: calc(40% - 15px);
+} /* Jun */
+.chart-point.p7 {
+  left: 100%;
+  bottom: calc(45% - 15px);
+} /* Jul */
+/* You would need to add more points (p8, p9, etc.) if your chart is longer or more detailed */
+
+/* --- Two Column Grid for Latest Pools and Trending Strategies --- */
+.dashboard-grid-two-cols {
+  display: grid;
+  grid-template-columns: 1fr; /* Default to single column on small screens */
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .dashboard-grid-two-cols {
+    grid-template-columns: 1fr 1fr; /* Two columns on larger screens */
+  }
+}
+@media (min-width: 1024px) {
+  .dashboard-grid-two-cols {
+    grid-template-columns: 1.2fr 1fr; /* Adjust ratios for better layout of Top Performing vs Trending */
+  }
+  .top-performing-pools {
+    grid-column: span 1; /* Ensure it takes one column */
+  }
+  .latest-pool-launches {
+    /* For image-based layout, it's often better to explicitly place or size */
+    grid-column: span 1; /* Ensure it takes one column */
+  }
+  .trending-strategies {
+    /* If you want Latest Pools and Trending Strategies to be side-by-side below Top Performing Pools,
+       you might need a different grid structure or to adjust placement.
+       For now, it stacks after Latest Pools. */
+    grid-column: span 1; /* If you want it next to Latest Pool Launches on large screens, make it span 1 */
+  }
+  /* To make Latest Pool Launches and Trending Strategies be side by side under the Performance Chart,
+     you might structure the grid differently in App.jsx or use flexbox within a wrapping div.
+     For now, Trending Strategies will appear below Latest Pool Launches. */
+}
+
+/* If you want Latest Pool Launches and Trending Strategies to be in two columns below Performance Overview,
+   you might want to wrap them in another div and apply a 2-column grid there.
+   For simplicity, I'm keeping them as direct children of main-content, which means
+   trending-strategies would typically appear below latest-pool-launches on wider screens too,
+   unless explicitly put into a multi-column grid that encompasses them.
+   The current `dashboard-grid-two-cols` tries to fit them into two columns.
+   If Trending Strategies is meant to be a separate full-width section below
+   both Top Performing Pools and Latest Pool Launches, its `grid-column` should be `span 2`.
+   I've adjusted the `dashboard-grid-two-cols` to reflect the image more closely with two sections side-by-side.
+*/
+@media (min-width: 1024px) {
+  .dashboard-grid-two-cols {
+    grid-template-columns: 1fr 1fr; /* Two columns for these sections */
+  }
+}
+
+/* --- Top Performing Pools List --- */
+.pool-list {
+  list-style: none;
+  padding: 0;
+}
+
+.pool-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.pool-item:last-child {
+  border-bottom: none;
+}
+
+.pool-rank {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #a0a0a0;
+  width: 25px; /* Fixed width for rank */
+  text-align: center;
+  margin-right: 1rem;
+}
+
+.pool-details {
+  flex-grow: 1;
+}
+
+.pool-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.pool-manager {
+  font-size: 0.85rem;
+  color: #a0a0a0;
+}
+
+.pool-chain {
+  background-color: rgba(136, 136, 136, 0.1);
+  color: #a0a0a0;
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  margin-left: 0.5rem;
+}
+
+.pool-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3em 0.8em;
+  border-radius: 4px;
+  text-transform: uppercase;
+  margin-left: 1rem;
+}
+
+.pool-tag.elite {
+  background-color: rgba(255, 215, 0, 0.1); /* Gold tint */
+  color: #ffd700;
+}
+
+.pool-tag.pro {
+  background-color: rgba(0, 191, 255, 0.1); /* Sky blue tint */
+  color: #00bfff;
+}
+
+.pool-percentage {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-left: 1rem;
+}
+.pool-percentage.positive {
+  color: #2ecc71; /* Green */
+}
+.pool-percentage.negative {
+  color: #e74c3c; /* Red */
+}
+
+/* --- Latest Pool Launches --- */
+.latest-pools-list {
+  list-style: none;
+  padding: 0;
+}
+
+.latest-pool-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.latest-pool-item:last-child {
+  border-bottom: none;
+}
+
+.pool-thumbnail {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+  background-color: #333; /* Placeholder background */
+}
+
+.pool-info {
+  flex-grow: 1;
+}
+
+.pool-info .pool-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.pool-info .pool-manager {
+  font-size: 0.85rem;
+  color: #a0a0a0;
+}
+
+.pool-type {
+  background-color: rgba(136, 136, 136, 0.1);
+  color: #888888;
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+  display: inline-block;
+}
+
+.pool-stats {
+  text-align: right;
+}
+
+.tvl-label {
+  font-size: 0.8rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.25rem;
+}
+
+.tvl-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.invest-now-btn {
+  background-color: #888888; /* Grey button */
+  color: #0a0a0a; /* Black text */
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.invest-now-btn:hover {
+  background-color: #ffffff; /* White on hover */
+  color: #0a0a0a; /* Black text */
+}
+
+/* --- Trending Strategies --- */
+.trending-strategies-list {
+  list-style: none;
+  padding: 0;
+}
+
+.strategy-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.strategy-item:last-child {
+  border-bottom: none;
+}
+
+.strategy-thumbnail {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+  background-color: #333; /* Placeholder background */
+}
+
+.strategy-info {
+  flex-grow: 1;
+}
+
+.strategy-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.strategy-description {
+  font-size: 0.85rem;
+  color: #a0a0a0;
+}
+
+.strategy-growth {
+  text-align: right;
+}
+
+.growth-label {
+  font-size: 0.8rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.25rem;
+}
+
+.growth-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.growth-value.positive {
+  color: #2ecc71; /* Green */
+}
+.growth-value.negative {
+  color: #e74c3c; /* Red */
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column; /* Stack sidebar and main content */
+  }
+
+  .sidebar {
+    width: 100%; /* Full width sidebar on mobile */
+    height: auto; /* Auto height for mobile sidebar */
+    position: static; /* Remove sticky behavior */
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1.5rem;
+  }
+
+  .dashboard-content-area {
+    padding-top: 0; /* No need for header padding if header is static or within App */
+  }
+
+  .main-content {
+    padding: 1rem; /* Smaller padding on mobile */
+  }
+
+  .summary-cards-grid {
+    grid-template-columns: 1fr; /* Single column for summary cards */
+  }
+}
+
+@media (max-width: 480px) {
+  .summary-card .card-value {
+    flex-direction: column; /* Stack value and percentage on very small screens */
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+}

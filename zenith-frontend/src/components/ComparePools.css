@@ -1,0 +1,283 @@
+/* src/pages/ComparePools.css */
+
+/* --- Overall Page Layout (similar to analytics-page-container) --- */
+.poolAndAside {
+  display: flex;
+  min-height: 100vh;
+  background: #0a0a0a; /* True black background */
+  color: #ffffff; /* Default text color */
+}
+
+/* --- Sidebar (Copied for consistency across all analysis pages) --- */
+.sidebar {
+  width: 250px; /* Fixed width for sidebar */
+  background-color: #1a1a1a; /* Darker grey for sidebar */
+  padding: 2rem 1.5rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0; /* Prevent sidebar from shrinking */
+  position: sticky; /* Makes sidebar stick on scroll */
+  top: 0; /* Adjust if a global header is present, otherwise 0 */
+  height: 100vh; /* Fill remaining viewport height */
+  overflow-y: auto; /* Scrollable sidebar if content overflows */
+}
+
+/* Adjust top for header if present in the main app layout */
+/* If the main app has a fixed header, adjust sidebar's top and height */
+body:has(.app-header) .sidebar {
+  top: 80px; /* Assuming a fixed header of 80px */
+  height: calc(100vh - 80px);
+}
+
+.sidebar-section {
+  margin-bottom: 2rem;
+}
+
+.sidebar-title {
+  color: #a0a0a0; /* Muted grey for titles */
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #e0e0e0; /* Lighter grey for links */
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease;
+  font-weight: 400;
+  font-size: 0.95rem;
+}
+
+.sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.05); /* Subtle hover background */
+  color: #ffffff;
+}
+
+.sidebar-link.active {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Slightly more prominent active background */
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.sidebar-icon {
+  font-size: 1rem;
+  color: #888888; /* Grey icon color */
+  transition: color 0.2s ease;
+}
+
+.sidebar-link.active .sidebar-icon,
+.sidebar-link:hover .sidebar-icon {
+  color: #ffffff; /* White icon color on active/hover */
+}
+
+/* --- Main Content Area for Compare Pools Page --- */
+.compare-section {
+  flex-grow: 1;
+  padding: 2rem;
+  background-color: #0a0a0a; /* Ensure main content area is black */
+  overflow-y: auto; /* Enable scrolling for main content if it overflows */
+}
+
+.compare-container {
+  max-width: 1200px; /* Constrain content width */
+  margin: 0 auto; /* Center content */
+}
+
+/* --- Compare Pools Header (Title & Subtitle) --- */
+.compare-header {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.compare-title {
+  font-size: 3rem;
+  font-weight: 100;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.03em;
+  color: #ffffff; /* Set text color to white */
+  /* Removed gradient text effect as per user request */
+}
+
+.compare-subtitle {
+  font-size: 1.15rem;
+  color: #a0a0a0;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+  font-weight: 300;
+}
+
+/* --- Comparison Table --- */
+.compare-table {
+  background-color: #1c1c1c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  overflow-x: auto; /* Enable horizontal scrolling for tables on small screens */
+  width: 100%; /* Ensure it takes full width of its container */
+}
+
+.compare-row {
+  display: flex;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.compare-row:last-child {
+  border-bottom: none; /* No border for the last row */
+}
+
+.compare-col {
+  flex: 1; /* Each column takes equal width */
+  min-width: 150px; /* Minimum width for each data column to prevent squishing */
+  padding: 1rem 1.5rem;
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center content in cells */
+  text-align: center;
+}
+
+.compare-col.heading {
+  flex-shrink: 0; /* Prevent the "Metric" column from shrinking too much */
+  min-width: 180px; /* Give more space for metric names */
+  font-weight: 600;
+  color: #a0a0a0;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.03
+  ); /* Slightly different background for headings */
+  border-right: 1px solid rgba(255, 255, 255, 0.05); /* Separator for heading column */
+  justify-content: flex-start; /* Align metric names to the left */
+}
+
+.compare-header-row {
+  background-color: #1a1a1a; /* Darker background for table header */
+  border-radius: 12px 12px 0 0;
+}
+
+.compare-header-row .compare-col {
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+}
+
+.compare-header-row .compare-col.heading {
+  color: #a0a0a0; /* Keep the 'Metric' header muted */
+}
+
+.compare-col .yes {
+  color: #2ecc71; /* Green for "Yes" */
+  font-weight: 500;
+}
+
+.compare-col .no {
+  color: #e74c3c; /* Red for "No" */
+  font-weight: 500;
+}
+
+/* Specific styling for volatility for consistency with RiskAnalysis */
+.compare-col .low {
+  color: #2ecc71;
+}
+.compare-col .moderate {
+  color: #f1c40f;
+}
+.compare-col .high {
+  color: #e74c3c;
+}
+
+/* --- Mobile Responsiveness (consistent with other analysis pages) --- */
+@media (max-width: 768px) {
+  .poolAndAside {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1.5rem;
+  }
+
+  /* Adjust top for header if present in the main app layout */
+  body:has(.app-header) .sidebar {
+    top: 0;
+    height: auto;
+  }
+
+  .compare-section {
+    padding: 1rem;
+  }
+
+  .compare-header {
+    text-align: left;
+  }
+
+  .compare-title {
+    font-size: 2rem;
+  }
+
+  .compare-subtitle {
+    font-size: 1rem;
+  }
+
+  .compare-table {
+    border-radius: 8px; /* Slightly smaller border-radius on mobile */
+  }
+
+  .compare-col {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.85rem;
+    min-width: 120px; /* Further reduce min-width for table columns on very small screens */
+  }
+
+  .compare-col.heading {
+    min-width: 140px; /* Adjust heading column width for smaller screens */
+  }
+
+  .compare-header-row .compare-col {
+    font-size: 0.9rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .compare-title {
+    font-size: 1.8rem;
+  }
+
+  .compare-col {
+    min-width: 100px; /* Even smaller min-width for mobile */
+    padding: 0.5rem;
+  }
+
+  .compare-col.heading {
+    min-width: 100px;
+  }
+}

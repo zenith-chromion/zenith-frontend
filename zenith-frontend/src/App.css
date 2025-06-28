@@ -1,0 +1,16 @@
+/*
+  App.css
+  This file is intentionally left minimal as Tailwind CSS handles most of the styling.
+  Any global or override styles specific to the App component (if not handled by Tailwind)
+  could be placed here.
+*/
+
+/* Example: If you had a custom font that Tailwind couldn't load or if you wanted a very specific global reset */
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap'); */
+
+/*
+  Since Tailwind CSS is loaded via CDN with custom config directly in App.jsx,
+  most styles are applied via utility classes in JSX.
+  If you were using Tailwind via a build process (e.g., PostCSS), this file might
+  contain @tailwind directives.
+*/

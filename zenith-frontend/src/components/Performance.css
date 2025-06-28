@@ -1,0 +1,335 @@
+/* src/pages/Performance.css */
+
+/* --- Overall Page Layout (similar to analytics-page-container) --- */
+.performance.poolAndAside {
+  display: flex;
+  min-height: 100vh;
+  background: #0a0a0a; /* True black background */
+  color: #ffffff; /* Default text color */
+}
+
+/* --- Sidebar (Copied from AnalyticsPage.css for consistency) --- */
+.sidebar {
+  width: 250px; /* Fixed width for sidebar */
+  background-color: #1a1a1a; /* Darker grey for sidebar */
+  padding: 2rem 1.5rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0; /* Prevent sidebar from shrinking */
+  position: sticky; /* Makes sidebar stick on scroll */
+  top: 0; /* Adjust if a global header is present, otherwise 0 */
+  height: 100vh; /* Fill remaining viewport height */
+  overflow-y: auto; /* Scrollable sidebar if content overflows */
+}
+
+/* Adjust top for header if present in the main app layout */
+/* If the main app has a fixed header, adjust sidebar's top and height */
+body:has(.app-header) .sidebar {
+  top: 80px; /* Assuming a fixed header of 80px */
+  height: calc(100vh - 80px);
+}
+
+.sidebar-section {
+  margin-bottom: 2rem;
+}
+
+.sidebar-title {
+  color: #a0a0a0; /* Muted grey for titles */
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #e0e0e0; /* Lighter grey for links */
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease;
+  font-weight: 400;
+  font-size: 0.95rem;
+}
+
+.sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.05); /* Subtle hover background */
+  color: #ffffff;
+}
+
+.sidebar-link.active {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Slightly more prominent active background */
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.sidebar-icon {
+  font-size: 1rem;
+  color: #888888; /* Grey icon color */
+  transition: color 0.2s ease;
+}
+
+.sidebar-link.active .sidebar-icon,
+.sidebar-link:hover .sidebar-icon {
+  color: #ffffff; /* White icon color on active/hover */
+}
+
+/* --- Main Content Area for Performance Page --- */
+.performance-section {
+  flex-grow: 1;
+  padding: 2rem;
+  background-color: #0a0a0a; /* Ensure main content area is black */
+  overflow-y: auto; /* Enable scrolling for main content if it overflows */
+}
+
+.performance-container {
+  max-width: 1200px; /* Constrain content width */
+  margin: 0 auto; /* Center content */
+}
+
+/* --- Performance Header (Title & Subtitle) --- */
+.performance-header {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.performance-title {
+  font-size: 3rem;
+  font-weight: 100;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.03em;
+  color: #ffffff; /* Set text color to white */
+  /* Removed gradient text effect */
+}
+
+.performance-subtitle {
+  font-size: 1.15rem;
+  color: #a0a0a0;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+  font-weight: 300;
+}
+
+/* --- Performance Grid (for Fund Manager Cards) --- */
+.performance-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(300px, 1fr)
+  ); /* Responsive grid */
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+/* --- Performance Card --- */
+.performance-card {
+  background-color: #1c1c1c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative; /* For the zk-status badge */
+  overflow: hidden; /* Ensure anything overflowing is clipped */
+}
+
+.performance-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.performance-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+
+  border-radius: 12px 12px 0 0;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.card-header h2 {
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.tier-badge {
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.tier-badge.tier-1 {
+  background-color: rgba(46, 204, 113, 0.2); /* Green */
+  color: #2ecc71;
+}
+
+.tier-badge.tier-2 {
+  background-color: rgba(52, 152, 219, 0.2); /* Blue */
+  color: #3498db;
+}
+
+.tier-badge.tier-3 {
+  background-color: rgba(241, 196, 15, 0.2); /* Yellow */
+  color: #f1c40f;
+}
+
+.strategy-label {
+  font-size: 0.95rem;
+  color: #a0a0a0;
+  margin-bottom: 1.5rem;
+}
+
+.metrics {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 1.5rem;
+}
+
+.metrics > div {
+  text-align: center;
+  flex: 1; /* Distribute space evenly */
+}
+
+.metric-label {
+  font-size: 0.9rem;
+  color: #a0a0a0;
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.metric-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff; /* Default, will be overridden */
+}
+
+.metric-value.positive {
+  color: #2ecc71; /* Green */
+}
+
+.metric-value.negative {
+  color: #e74c3c; /* Red */
+}
+
+.zk-status {
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: auto; /* Push to bottom of card */
+  width: fit-content; /* Fit content */
+  align-self: flex-end; /* Align to bottom right */
+  border: 1px solid transparent;
+}
+
+.zk-status.verified {
+  background-color: rgba(46, 204, 113, 0.1);
+  color: #2ecc71;
+  border-color: rgba(46, 204, 113, 0.3);
+}
+
+.zk-status.unverified {
+  background-color: rgba(241, 196, 15, 0.1);
+  color: #f1c40f;
+  border-color: rgba(241, 196, 15, 0.3);
+}
+
+/* --- Mobile Responsiveness (consistent with AnalyticsPage.css) --- */
+@media (max-width: 768px) {
+  .performance.poolAndAside {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1.5rem;
+  }
+
+  /* Adjust top for header if present in the main app layout */
+  body:has(.app-header) .sidebar {
+    top: 0;
+    height: auto;
+  }
+
+  .performance-section {
+    padding: 1rem;
+  }
+
+  .performance-header {
+    text-align: left;
+  }
+
+  .performance-title {
+    font-size: 2rem;
+  }
+
+  .performance-subtitle {
+    font-size: 1rem;
+  }
+
+  .performance-grid {
+    grid-template-columns: 1fr; /* Stack cards on small screens */
+  }
+
+  .performance-card {
+    padding: 1rem;
+  }
+
+  .card-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .metric-value {
+    font-size: 1.6rem;
+  }
+
+  .metrics {
+    flex-direction: column; /* Stack metrics vertically */
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .performance-title {
+    font-size: 1.8rem;
+  }
+}

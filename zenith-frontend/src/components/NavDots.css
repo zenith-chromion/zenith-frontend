@@ -1,0 +1,63 @@
+/* src/components/NavDots/NavDots.css */
+
+.nav-dots-container {
+  position: fixed;
+  right: 20px; /* Adjust as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 999; /* Ensure dots are above other content */
+}
+
+.nav-dot {
+  width: 12px;
+  height: 12px;
+  background-color: rgba(255, 255, 255, 0.4); /* Faded white for inactive */
+  border: 1px solid rgba(255, 255, 255, 0.6); /* Subtle border */
+  border-radius: 50%;
+  margin: 8px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0; /* Remove default button padding */
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+.nav-dot:hover {
+  background-color: rgba(255, 255, 255, 0.7); /* Brighter on hover */
+  border-color: #ffffff;
+  transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+.nav-dot.active {
+  background-color: #ffffff; /* Solid white for active dot */
+  border-color: #ffffff;
+  width: 14px; /* Slightly larger for active */
+  height: 14px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .nav-dots-container {
+    right: 10px;
+    margin-top: 50px; /* Adjust if header covers it */
+  }
+
+  .nav-dot {
+    width: 10px;
+    height: 10px;
+    margin: 6px 0;
+  }
+
+  .nav-dot.active {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-dots-container {
+    display: none; /* Hide on very small screens if desired */
+  }
+}

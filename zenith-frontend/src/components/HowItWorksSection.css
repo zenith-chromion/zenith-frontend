@@ -1,0 +1,57 @@
+/* src/components/HowItWorksSection/HowItWorksSection.css */
+.how-it-works-section {
+  padding: 8rem 2rem;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.01); /* Even more subtle background */
+}
+
+.process-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.process-step {
+  text-align: center;
+  max-width: 250px;
+}
+
+.step-number {
+  font-size: 4rem;
+  font-weight: 100;
+  color: rgba(255, 255, 255, 0.1); /* Very subtle white for numbers */
+  margin-bottom: 1rem;
+  letter-spacing: -0.05em;
+}
+
+.process-step h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.process-step p {
+  color: #e0e0e0; /* Lighter grey for description */
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.process-arrow {
+  font-size: 2rem; /* Adjusted font size for arrow consistency */
+  color: #888888; /* Grey arrow */
+  font-weight: 100;
+}
+
+/* Mobile Responsiveness for How It Works Section */
+@media (max-width: 768px) {
+  .process-flow {
+    flex-direction: column; /* Stack steps vertically */
+  }
+
+  .process-arrow {
+    transform: rotate(90deg); /* Rotate arrow for vertical flow */
+  }
+}

@@ -1,0 +1,442 @@
+/* src/components/WatchlistPage/WatchlistPage.css */
+
+/* --- Global Layout for pages with Sidebar --- */
+.watchlist-page-container {
+  display: flex;
+  min-height: 100vh;
+  background: #0a0a0a; /* True black background */
+  color: #ffffff; /* Default text color */
+}
+
+.page-content-area {
+  display: flex;
+  flex-grow: 1; /* Allows it to take remaining space */
+  padding-top: 80px; /* Space for fixed header, adjust if header is very tall */
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 2rem;
+  background-color: #0a0a0a; /* Ensure main content area is black */
+  overflow-y: auto; /* Enable scrolling for main content if it overflows */
+  max-width: 1200px; /* Limit content width */
+  margin: 0 auto; /* Center content */
+}
+
+/* --- Sidebar Styles (Copied from DashboardPage.css / GovernancePage.css) --- */
+.sidebar {
+  width: 250px; /* Fixed width for sidebar */
+  background-color: #1a1a1a; /* Darker grey for sidebar */
+  padding: 2rem 1.5rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0; /* Prevent sidebar from shrinking */
+  position: sticky; /* Makes sidebar stick on scroll */
+  top: 80px; /* Align with header bottom */
+  height: calc(100vh - 80px); /* Fill remaining viewport height */
+  overflow-y: auto; /* Scrollable sidebar if content overflows */
+}
+
+.sidebar-section {
+  margin-bottom: 2rem;
+}
+
+.sidebar-title {
+  color: #a0a0a0; /* Muted grey for titles */
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #e0e0e0; /* Lighter grey for links */
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease;
+  font-weight: 400;
+  font-size: 0.95rem;
+}
+
+.sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.05); /* Subtle hover background */
+  color: #ffffff;
+}
+
+.sidebar-link.active {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Slightly more prominent active background */
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.sidebar-icon {
+  font-size: 1rem;
+  color: #888888; /* Grey icon color */
+  transition: color 0.2s ease;
+}
+
+.sidebar-link.active .sidebar-icon,
+.sidebar-link:hover .sidebar-icon {
+  color: #ffffff; /* White icon color on active/hover */
+}
+
+/* --- Page Header (Title & Description) --- */
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 100;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.page-description {
+  font-size: 1.1rem;
+  color: #a0a0a0;
+  font-weight: 300;
+}
+
+/* --- Watchlist Controls --- */
+.watchlist-controls {
+  background-color: #1c1c1c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.search-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.search-input-wrapper {
+  position: relative;
+  flex-grow: 1;
+  min-width: 200px; /* Ensure search input is not too small */
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.8rem 1rem 0.8rem 3rem; /* Left padding for icon */
+  background-color: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.search-input::placeholder {
+  color: #666;
+}
+
+.search-input:focus {
+  border-color: #888888;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a0a0a0;
+}
+
+.filter-select {
+  background-color: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  cursor: pointer;
+  appearance: none; /* Remove default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>'); /* Custom arrow */
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.filter-select:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: #888888;
+  color: #ffffff;
+}
+
+.action-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.pools-watched-info {
+  font-size: 0.9rem;
+  color: #a0a0a0;
+}
+
+.add-pool-btn {
+  background-color: #888888; /* Grey button */
+  color: #0a0a0a;
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.add-pool-btn:hover {
+  background-color: #ffffff;
+  color: #0a0a0a;
+}
+
+.icon-mr {
+  margin-right: 0.5rem;
+}
+
+/* Watchlist Grid */
+.watchlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.watchlist-card {
+  background-color: #1c1c1c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.watchlist-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.card-manager {
+  font-size: 0.85rem;
+  color: #a0a0a0;
+}
+
+.watch-toggle-btn {
+  background: transparent;
+  border: none;
+  color: #a0a0a0;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.watch-toggle-btn:hover {
+  color: #ffffff;
+}
+
+.card-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: #a0a0a0;
+}
+
+.stat-value {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.stat-value.text-positive {
+  color: #2ecc71; /* Green */
+}
+
+.risk-low {
+  color: #2ecc71;
+}
+.risk-medium {
+  color: #f39c12;
+}
+.risk-high {
+  color: #e74c3c;
+}
+
+.category-tag {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #e0e0e0;
+  font-size: 0.75rem;
+  padding: 0.3em 0.7em;
+  border-radius: 4px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.invest-now-btn {
+  flex-grow: 1;
+  background-color: #888888; /* Grey button */
+  color: #0a0a0a;
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.invest-now-btn:hover {
+  background-color: #ffffff;
+  color: #0a0a0a;
+}
+
+.remove-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #a0a0a0;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.remove-btn:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .watchlist-page-container {
+    flex-direction: column; /* Stack sidebar and main content */
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static; /* Remove sticky on mobile */
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1.5rem;
+  }
+
+  .page-content-area {
+    padding-top: 0; /* No padding-top needed if header is not fixed relative to this container */
+  }
+
+  .main-content {
+    padding: 1rem;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .page-description {
+    font-size: 1rem;
+  }
+
+  .watchlist-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-filter-group,
+  .action-group {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .search-input-wrapper {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .filter-select,
+  .add-pool-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .watchlist-grid {
+    grid-template-columns: 1fr; /* Single column on mobile */
+  }
+
+  .card-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .invest-now-btn,
+  .remove-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

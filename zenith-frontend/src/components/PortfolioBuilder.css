@@ -1,0 +1,274 @@
+/* src/pages/PortfolioBuilder.css */
+
+/* --- Overall Page Layout (similar to analytics-page-container) --- */
+.poolAndAside {
+  display: flex;
+  min-height: 100vh;
+  background: #0a0a0a; /* True black background */
+  color: #ffffff; /* Default text color */
+}
+
+/* --- Sidebar (Copied for consistency across all analysis pages) --- */
+.sidebar {
+  width: 250px; /* Fixed width for sidebar */
+  background-color: #1a1a1a; /* Darker grey for sidebar */
+  padding: 2rem 1.5rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0; /* Prevent sidebar from shrinking */
+  position: sticky; /* Makes sidebar stick on scroll */
+  top: 0; /* Adjust if a global header is present, otherwise 0 */
+  height: 100vh; /* Fill remaining viewport height */
+  overflow-y: auto; /* Scrollable sidebar if content overflows */
+}
+
+/* Adjust top for header if present in the main app layout */
+/* If the main app has a fixed header, adjust sidebar's top and height */
+body:has(.app-header) .sidebar {
+  top: 80px; /* Assuming a fixed header of 80px */
+  height: calc(100vh - 80px);
+}
+
+.sidebar-section {
+  margin-bottom: 2rem;
+}
+
+.sidebar-title {
+  color: #a0a0a0; /* Muted grey for titles */
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #e0e0e0; /* Lighter grey for links */
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease;
+  font-weight: 400;
+  font-size: 0.95rem;
+}
+
+.sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.05); /* Subtle hover background */
+  color: #ffffff;
+}
+
+.sidebar-link.active {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Slightly more prominent active background */
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.sidebar-icon {
+  font-size: 1rem;
+  color: #888888; /* Grey icon color */
+  transition: color 0.2s ease;
+}
+
+.sidebar-link.active .sidebar-icon,
+.sidebar-link:hover .sidebar-icon {
+  color: #ffffff; /* White icon color on active/hover */
+}
+
+/* --- Main Content Area for Portfolio Builder Page --- */
+.portfolio-section {
+  flex-grow: 1;
+  padding: 2rem;
+  background-color: #0a0a0a; /* Ensure main content area is black */
+  overflow-y: auto; /* Enable scrolling for main content if it overflows */
+}
+
+.portfolio-container {
+  max-width: 800px; /* Constrain content width */
+  margin: 0 auto; /* Center content */
+}
+
+/* --- Portfolio Builder Header (Title & Subtitle) --- */
+.portfolio-header {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.portfolio-title {
+  font-size: 3rem;
+  font-weight: 100;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.03em;
+  color: #ffffff; /* Set text color to white */
+  /* Removed gradient text effect as per user request */
+}
+
+.portfolio-subtitle {
+  font-size: 1.15rem;
+  color: #a0a0a0;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+  font-weight: 300;
+}
+
+/* --- Portfolio Form --- */
+.portfolio-form {
+  background-color: #1c1c1c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.pool-input {
+  margin-bottom: 1.5rem;
+}
+
+.pool-input label {
+  display: block;
+  font-size: 1rem;
+  color: #e0e0e0;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.pool-input input[type="number"] {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background-color: #0a0a0a; /* Dark input background */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pool-input input[type="number"]:focus {
+  outline: none;
+  border-color: #3498db; /* Blue accent on focus */
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
+}
+
+/* Hide arrow buttons for number input */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* --- Portfolio Summary --- */
+.portfolio-summary {
+  background-color: #1c1c1c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.portfolio-summary h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+.portfolio-summary h3 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #2ecc71; /* Green for estimated ROI */
+  margin-bottom: 1rem;
+}
+
+.summary-note {
+  font-size: 0.9rem;
+  color: #a0a0a0;
+  line-height: 1.5;
+}
+
+/* --- Mobile Responsiveness (consistent with other analysis pages) --- */
+@media (max-width: 768px) {
+  .poolAndAside {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1.5rem;
+  }
+
+  /* Adjust top for header if present in the main app layout */
+  body:has(.app-header) .sidebar {
+    top: 0;
+    height: auto;
+  }
+
+  .portfolio-section {
+    padding: 1rem;
+  }
+
+  .portfolio-header {
+    text-align: left;
+  }
+
+  .portfolio-title {
+    font-size: 2rem;
+  }
+
+  .portfolio-subtitle {
+    font-size: 1rem;
+  }
+
+  .portfolio-form,
+  .portfolio-summary {
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+
+  .pool-input label {
+    font-size: 0.9rem;
+  }
+
+  .pool-input input[type="number"] {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .portfolio-summary h2 {
+    font-size: 1.6rem;
+  }
+
+  .portfolio-summary h3 {
+    font-size: 1.4rem;
+  }
+
+  .summary-note {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-title {
+    font-size: 1.8rem;
+  }
+}

@@ -1,0 +1,1357 @@
+/* src/components/AnalyticsPage/AnalyticsPage.css */
+
+/* --- Global Analytics Page Layout --- */
+.analytics-page-container {
+  display: flex;
+  min-height: 100vh;
+  background: #0a0a0a; /* True black background */
+  color: #ffffff; /* Default text color */
+}
+
+.analytics-content-area {
+  display: flex;
+  flex-grow: 1; /* Allows it to take remaining space */
+  padding-top: 80px; /* Space for fixed header, adjust if header is very tall */
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 2rem;
+  background-color: #0a0a0a; /* Ensure main content area is black */
+  overflow-y: auto; /* Enable scrolling for main content if it overflows */
+}
+
+/* --- Sidebar (Copied from DashboardPage.css) --- */
+.sidebar {
+  width: 250px; /* Fixed width for sidebar */
+  background-color: #1a1a1a; /* Darker grey for sidebar */
+  padding: 2rem 1.5rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0; /* Prevent sidebar from shrinking */
+  position: sticky; /* Makes sidebar stick on scroll */
+  top: 80px; /* Align with header bottom */
+  height: calc(100vh - 80px); /* Fill remaining viewport height */
+  overflow-y: auto; /* Scrollable sidebar if content overflows */
+}
+
+.sidebar-section {
+  margin-bottom: 2rem;
+}
+
+.sidebar-title {
+  color: #a0a0a0; /* Muted grey for titles */
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #e0e0e0; /* Lighter grey for links */
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease;
+  font-weight: 400;
+  font-size: 0.95rem;
+}
+
+.sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.05); /* Subtle hover background */
+  color: #ffffff;
+}
+
+.sidebar-link.active {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Slightly more prominent active background */
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.sidebar-icon {
+  font-size: 1rem;
+  color: #888888; /* Grey icon color */
+  transition: color 0.2s ease;
+}
+
+.sidebar-link.active .sidebar-icon,
+.sidebar-link:hover .sidebar-icon {
+  color: #ffffff; /* White icon color on active/hover */
+}
+
+/* --- Page Header (Title & Description) --- */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 1rem; /* Gap between header content and actions */
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 100;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.page-description {
+  font-size: 1.1rem;
+  color: #a0a0a0;
+  margin-bottom: 0; /* Adjusted as it's part of the header block */
+  font-weight: 300;
+}
+
+.header-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap; /* Allow buttons to wrap */
+}
+
+.action-button {
+  background-color: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.action-button:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: #888888;
+  color: #ffffff;
+}
+
+/* --- Summary Cards Grid (Re-used/Adapted) --- */
+.summary-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.summary-card {
+  background-color: #1c1c1c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+/* Specific icon wrapper colors */
+.card-icon-wrapper.primary-icon {
+  background-color: rgba(46, 204, 113, 0.2);
+  color: #2ecc71;
+} /* Green */
+.card-icon-wrapper.secondary-icon {
+  background-color: rgba(52, 152, 219, 0.2);
+  color: #3498db;
+} /* Blue */
+.card-icon-wrapper.tertiary-icon {
+  background-color: rgba(241, 196, 15, 0.2);
+  color: #f1c40f;
+} /* Yellow */
+.card-icon-wrapper.quaternary-icon {
+  background-color: rgba(231, 76, 60, 0.2);
+  color: #e74c3c;
+} /* Red */
+
+.card-label {
+  font-size: 0.9rem;
+  color: #a0a0a0;
+  margin-bottom: 0.5rem;
+}
+
+.card-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.percentage-positive {
+  color: #2ecc71; /* Green for positive */
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.percentage-negative {
+  color: #e74c3c; /* Red for negative */
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* --- General Section Styling --- */
+.dashboard-section {
+  background-color: #1c1c1c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.view-all-link {
+  color: #888888;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.view-all-link:hover {
+  color: #ffffff;
+}
+
+/* --- Portfolio Performance Chart --- */
+.portfolio-performance-chart .chart-filters {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.portfolio-performance-chart .chart-filters .legend-color-box {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  margin-left: 1rem; /* Space between label and box */
+  margin-right: 0.25rem; /* Space between box and next label */
+}
+.portfolio-performance-chart .chart-filters .legend-color-box.green {
+  background-color: #2ecc71;
+}
+.portfolio-performance-chart .chart-filters .legend-color-box.purple {
+  background-color: #9b59b6;
+}
+
+.portfolio-performance-chart .filter-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  color: #a0a0a0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.85rem;
+}
+
+.portfolio-performance-chart .filter-btn:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
+
+.portfolio-performance-chart .filter-btn.active {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-color: #888888;
+}
+
+.chart-area-full {
+  position: relative;
+  width: 100%;
+  height: 300px; /* Fixed height for the chart area */
+  background-color: #121212; /* Darker grey for chart background */
+  border-radius: 8px;
+  padding: 1rem 1rem 0 1rem; /* Adjust padding for labels and content */
+  display: flex; /* For Flexbox alignment of internal elements */
+  flex-direction: column; /* Stack chart and X-axis */
+  box-sizing: border-box; /* Include padding in height */
+  margin-bottom: 1rem;
+}
+
+.chart-y-axis {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: calc(100% - 40px); /* Adjust height to exclude x-axis labels */
+  display: flex;
+  flex-direction: column-reverse; /* To align labels from bottom up */
+  justify-content: space-between;
+  padding: 1rem 0.5rem;
+  color: #a0a0a0;
+  font-size: 0.8rem;
+  text-align: right;
+  width: 60px; /* Space for Y-axis labels */
+  z-index: 2; /* Keep Y-axis labels on top */
+}
+
+.chart-grid-container {
+  position: relative;
+  flex-grow: 1; /* Takes up remaining vertical space */
+  width: calc(100% - 60px); /* Adjust for Y-axis width */
+  margin-left: 60px; /* Offset for Y-axis */
+  height: calc(100% - 40px); /* Adjust height for x-axis */
+  overflow: hidden;
+}
+
+/* Grid lines */
+.chart-grid-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 14.28% calc(100% / 5); /* Approx 7 vertical segments, 5 horizontal segments */
+  z-index: 0;
+}
+
+.chart-line-value,
+.chart-line-benchmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: clip-path 0.5s ease-out;
+  z-index: 1;
+}
+
+.chart-line-value {
+  background: linear-gradient(
+    to top,
+    rgba(46, 204, 113, 0.2) 0%,
+    transparent 100%
+  ); /* Area fill */
+  clip-path: polygon(
+    0% 70%,
+    /* Jan - start (approx 30% from top, 70% from bottom) */ 8.33% 65%,
+    /* Feb */ 16.66% 60%,
+    /* Mar */ 25% 55%,
+    /* Apr */ 33.33% 50%,
+    /* May */ 41.66% 45%,
+    /* Jun */ 50% 40%,
+    /* Jul */ 58.33% 35%,
+    /* Aug */ 66.66% 30%,
+    /* Sep */ 75% 25%,
+    /* Oct */ 83.33% 20%,
+    /* Nov */ 91.66% 15%,
+    /* Dec */ 100% 10%,
+    /* End of data */ 100% 100%,
+    /* Bottom right */ 0% 100% /* Bottom left */
+  );
+  border-left: 1px solid #2ecc71; /* Left line */
+  border-bottom: 1px solid #2ecc71; /* Bottom line */
+}
+
+/* Hardcoded line for the value */
+.chart-line-value::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    to right,
+    #2ecc71 0%,
+    #2ecc71 8.33%,
+    #2ecc71 16.66%,
+    #2ecc71 25%,
+    #2ecc71 33.33%,
+    #2ecc71 41.66%,
+    #2ecc71 50%,
+    #2ecc71 58.33%,
+    #2ecc71 66.66%,
+    #2ecc71 75%,
+    #2ecc71 83.33%,
+    #2ecc71 91.66%,
+    #2ecc71 100%
+  );
+  clip-path: polygon(
+    0% 70%,
+    /* Jan */ 8.33% 65%,
+    /* Feb */ 16.66% 60%,
+    /* Mar */ 25% 55%,
+    /* Apr */ 33.33% 50%,
+    /* May */ 41.66% 45%,
+    /* Jun */ 50% 40%,
+    /* Jul */ 58.33% 35%,
+    /* Aug */ 66.66% 30%,
+    /* Sep */ 75% 25%,
+    /* Oct */ 83.33% 20%,
+    /* Nov */ 91.66% 15%,
+    /* Dec */ 100% 10% /* End of data */
+  );
+  border-bottom: 2px solid #2ecc71; /* Visible line */
+}
+
+.chart-line-benchmark {
+  clip-path: polygon(
+    0% 80%,
+    /* Jan Benchmark */ 8.33% 75%,
+    /* Feb */ 16.66% 70%,
+    /* Mar */ 25% 65%,
+    /* Apr */ 33.33% 60%,
+    /* May */ 41.66% 55%,
+    /* Jun */ 50% 50%,
+    /* Jul */ 58.33% 45%,
+    /* Aug */ 66.66% 40%,
+    /* Sep */ 75% 35%,
+    /* Oct */ 83.33% 30%,
+    /* Nov */ 91.66% 25%,
+    /* Dec */ 100% 20% /* End of data */
+  );
+  border-bottom: 2px dashed #9b59b6; /* Dashed purple line */
+}
+
+/* Chart dots */
+.chart-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+}
+.chart-dot.value {
+  background-color: #2ecc71;
+}
+.chart-dot.benchmark {
+  background-color: #9b59b6;
+}
+
+/* Position dots for value line (approximate values based on image) */
+.chart-dot.value.d1 {
+  left: 0%;
+  top: 70%;
+}
+.chart-dot.value.d2 {
+  left: 8.33%;
+  top: 65%;
+}
+.chart-dot.value.d3 {
+  left: 16.66%;
+  top: 60%;
+}
+.chart-dot.value.d4 {
+  left: 25%;
+  top: 55%;
+}
+.chart-dot.value.d5 {
+  left: 33.33%;
+  top: 50%;
+}
+.chart-dot.value.d6 {
+  left: 41.66%;
+  top: 45%;
+}
+.chart-dot.value.d7 {
+  left: 50%;
+  top: 40%;
+}
+.chart-dot.value.d8 {
+  left: 58.33%;
+  top: 35%;
+}
+.chart-dot.value.d9 {
+  left: 66.66%;
+  top: 30%;
+}
+.chart-dot.value.d10 {
+  left: 75%;
+  top: 25%;
+}
+.chart-dot.value.d11 {
+  left: 83.33%;
+  top: 20%;
+}
+.chart-dot.value.d12 {
+  left: 91.66%;
+  top: 15%;
+}
+
+/* Position dots for benchmark line (approximate values based on image) */
+.chart-dot.benchmark.b1 {
+  left: 0%;
+  top: 80%;
+}
+.chart-dot.benchmark.b2 {
+  left: 8.33%;
+  top: 75%;
+}
+.chart-dot.benchmark.b3 {
+  left: 16.66%;
+  top: 70%;
+}
+.chart-dot.benchmark.b4 {
+  left: 25%;
+  top: 65%;
+}
+.chart-dot.benchmark.b5 {
+  left: 33.33%;
+  top: 60%;
+}
+.chart-dot.benchmark.b6 {
+  left: 41.66%;
+  top: 55%;
+}
+.chart-dot.benchmark.b7 {
+  left: 50%;
+  top: 50%;
+}
+.chart-dot.benchmark.b8 {
+  left: 58.33%;
+  top: 45%;
+}
+.chart-dot.benchmark.b9 {
+  left: 66.66%;
+  top: 40%;
+}
+.chart-dot.benchmark.b10 {
+  left: 75%;
+  top: 35%;
+}
+.chart-dot.benchmark.b11 {
+  left: 83.33%;
+  top: 30%;
+}
+.chart-dot.benchmark.b12 {
+  left: 91.66%;
+  top: 25%;
+}
+
+.chart-x-axis {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+  color: #a0a0a0;
+  font-size: 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: auto; /* Push to bottom */
+}
+.chart-x-axis span {
+  width: 8%; /* Distribute labels evenly for 12 months */
+  text-align: center;
+}
+
+.performance-summary-values {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.5rem;
+}
+
+.performance-summary-values .value-item {
+  text-align: center;
+}
+
+.performance-summary-values .value-label {
+  font-size: 0.9rem;
+  color: #a0a0a0;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.performance-summary-values .value-number {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+.performance-summary-values .value-number.positive {
+  color: #2ecc71;
+}
+
+/* --- Two Column Grid for sections (Asset Allocation, Risk-Return, etc.) --- */
+.dashboard-grid-two-cols {
+  display: grid;
+  grid-template-columns: 1fr; /* Default to single column on small screens */
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .dashboard-grid-two-cols {
+    grid-template-columns: 1fr 1fr; /* Two columns on larger screens */
+  }
+}
+
+/* --- Asset Allocation Chart --- */
+.asset-allocation-chart .donut-chart {
+  position: relative;
+  width: 300px; /* Size of the donut chart placeholder image */
+  height: 300px;
+  margin: 2rem auto; /* Center the image */
+  background-color: transparent; /* Remove placeholder background */
+  border: none; /* Remove placeholder border */
+}
+
+.asset-allocation-details {
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.asset-allocation-details p {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  color: #e0e0e0;
+  font-size: 0.95rem;
+}
+
+.asset-allocation-details .color-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* Specific colors for Asset Allocation legend */
+.asset-allocation-details .color-box.defi {
+  background-color: #2ecc71;
+} /* Green */
+.asset-allocation-details .color-box.nfts {
+  background-color: #3498db;
+} /* Blue */
+.asset-allocation-details .color-box.layer1 {
+  background-color: #9b59b6;
+} /* Purple */
+.asset-allocation-details .color-box.layer2 {
+  background-color: #f1c40f;
+} /* Yellow */
+.asset-allocation-details .color-box.stablecoins {
+  background-color: #e74c3c;
+} /* Red */
+
+/* --- Risk-Return Analysis Chart --- */
+.risk-return-analysis-chart .scatter-chart {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  background-color: #121212;
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.risk-return-y-axis {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: calc(100% - 30px);
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  padding: 1rem 0.5rem;
+  color: #a0a0a0;
+  font-size: 0.8rem;
+  text-align: right;
+  width: 50px;
+  z-index: 2;
+}
+
+.risk-return-y-axis span {
+  height: 1px;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+  line-height: 1;
+  padding-right: 5px;
+}
+.risk-return-y-axis span:first-child,
+.risk-return-y-axis span:last-child {
+  border-bottom: none;
+}
+
+.risk-return-chart-area {
+  position: absolute;
+  left: 50px;
+  top: 0;
+  width: calc(100% - 50px);
+  height: calc(100% - 30px);
+  padding: 1rem 1rem 0 1rem;
+  z-index: 1;
+}
+
+.risk-return-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-bottom: 2px dashed #9b59b6; /* Purple dashed line for efficient frontier */
+  clip-path: polygon(
+    0% 90%,
+    /* Start point */ 15% 70%,
+    30% 50%,
+    50% 35%,
+    70% 25%,
+    85% 20%,
+    100% 18%,
+    /* End point */ 100% 100%,
+    /* To create a fill below the line */ 0% 100%
+  );
+  background: linear-gradient(
+    to top,
+    rgba(155, 89, 182, 0.1) 0%,
+    transparent 100%
+  );
+  opacity: 0.7;
+}
+
+.risk-return-point {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #2ecc71; /* Green points */
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(46, 204, 113, 0.5);
+  z-index: 2;
+  transform: translate(-50%, -50%);
+}
+
+/* Hardcoded point positions for Risk-Return */
+.risk-return-point.rp1 {
+  left: 5%;
+  top: 80%;
+}
+.risk-return-point.rp2 {
+  left: 15%;
+  top: 65%;
+}
+.risk-return-point.rp3 {
+  left: 25%;
+  top: 45%;
+}
+.risk-return-point.rp4 {
+  left: 40%;
+  top: 30%;
+}
+.risk-return-point.rp5 {
+  left: 60%;
+  top: 20%;
+}
+.risk-return-point.rp6 {
+  left: 80%;
+  top: 15%;
+}
+
+.risk-return-x-axis {
+  position: absolute;
+  bottom: 0;
+  left: 50px;
+  width: calc(100% - 50px);
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+  color: #a0a0a0;
+  font-size: 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.risk-label-x {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 1rem;
+  color: #a0a0a0;
+  font-size: 0.8rem;
+}
+
+.efficient-frontier-description {
+  font-size: 0.9rem;
+  color: #e0e0e0;
+  line-height: 1.5;
+  margin-top: 1.5rem;
+}
+.efficient-frontier-highlight {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* --- Performance Metrics Table --- */
+.performance-metrics-table .section-header {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.performance-metrics-table .search-input-wrapper.small {
+  max-width: 250px; /* Smaller search bar for table */
+  flex-grow: 0;
+}
+
+.table-responsive {
+  overflow-x: auto; /* Enable horizontal scrolling for tables on small screens */
+}
+
+.metrics-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.metrics-table th,
+.metrics-table td {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  white-space: nowrap; /* Prevent text wrapping in cells */
+}
+
+.metrics-table th {
+  color: #a0a0a0;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.metrics-table td {
+  color: #e0e0e0;
+}
+
+.metrics-table td.positive {
+  color: #2ecc71;
+  font-weight: 500;
+}
+
+.metrics-table td.negative {
+  color: #e74c3c;
+  font-weight: 500;
+}
+
+/* --- TVL Trend by Chain & Chain Performance Comparison Charts --- */
+.tvl-trend-chart .chart-legend,
+.chain-performance-chart .chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: #e0e0e0;
+}
+
+.tvl-trend-chart .chart-legend span,
+.chain-performance-chart .chart-legend span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tvl-trend-chart .legend-color-box,
+.chain-performance-chart .legend-color-box {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* Specific colors for TVL Trend by Chain legend */
+.tvl-trend-chart .legend-color-box.blue {
+  background-color: #3498db;
+}
+.tvl-trend-chart .legend-color-box.green {
+  background-color: #2ecc71;
+}
+.tvl-trend-chart .legend-color-box.red {
+  background-color: #e74c3c;
+}
+.tvl-trend-chart .legend-color-box.orange {
+  background-color: #f39c12;
+}
+.tvl-trend-chart .legend-color-box.purple {
+  background-color: #9b59b6;
+}
+
+/* Specific colors for Chain Performance Comparison legend */
+.chain-performance-chart .legend-color-box.light-blue {
+  background-color: #87ceeb;
+} /* Sky Blue */
+.chain-performance-chart .legend-color-box.light-green {
+  background-color: #90ee90;
+} /* Light Green */
+.chain-performance-chart .legend-color-box.light-purple {
+  background-color: #dda0dd;
+} /* Plum */
+
+.tvl-trend-chart .bar-chart,
+.chain-performance-chart .bar-chart-horizontal {
+  min-height: 250px; /* Minimum height for charts */
+  background-color: #121212;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* --- Risk Assessment Dashboard --- */
+.risk-assessment-dashboard .dashboard-sub-section {
+  background-color: #1a1a1a; /* Slightly darker than main section for sub-sections */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.risk-assessment-dashboard .sub-section-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.volatility-analysis .chart-legend {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: #e0e0e0;
+}
+
+.volatility-analysis .legend-color-box {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.volatility-analysis .legend-color-box.blue {
+  background-color: #3498db;
+}
+.volatility-analysis .legend-color-box.red-dashed {
+  background: linear-gradient(
+      to right,
+      #e74c3c 0%,
+      #e74c3c 50%,
+      transparent 50%,
+      transparent 100%
+    ),
+    linear-gradient(to bottom, transparent 50%, transparent 100%);
+  background-size: 8px 100%;
+}
+
+.volatility-analysis .line-chart {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background-color: #0a0a0a; /* Inner chart background */
+  border-radius: 6px;
+  padding: 1rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.volatility-y-axis {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: calc(100% - 30px);
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  padding: 1rem 0.5rem;
+  color: #a0a0a0;
+  font-size: 0.75rem;
+  text-align: right;
+  width: 40px;
+  z-index: 2;
+}
+.volatility-y-axis span {
+  height: 1px; /* Visual guide for percentage lines */
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.03);
+  line-height: 1;
+  padding-right: 5px; /* Space from chart area */
+}
+.volatility-y-axis span:first-child,
+.volatility-y-axis span:last-child {
+  border-bottom: none;
+}
+
+.volatility-chart-area {
+  position: absolute;
+  left: 40px; /* Offset by y-axis width */
+  top: 0;
+  width: calc(100% - 40px);
+  height: calc(100% - 30px);
+  padding: 1rem 1rem 0 1rem;
+  z-index: 1;
+}
+
+.volatility-line-portfolio,
+.volatility-line-market {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: clip-path 0.5s ease-out;
+}
+
+.volatility-line-portfolio {
+  clip-path: polygon(
+    0% 80%,
+    /* Jan */ 10% 75%,
+    /* Feb */ 20% 70%,
+    /* Mar */ 30% 65%,
+    /* Apr */ 40% 60%,
+    /* May */ 50% 55%,
+    /* Jun */ 60% 50%,
+    /* Jul */ 70% 45%,
+    /* Aug */ 80% 40%,
+    /* Sep */ 90% 35%,
+    /* Oct */ 100% 30% /* Nov */
+  );
+  border-bottom: 2px solid #3498db; /* Blue solid line */
+}
+
+.volatility-line-market {
+  clip-path: polygon(
+    0% 70%,
+    /* Jan */ 10% 60%,
+    /* Feb */ 20% 50%,
+    /* Mar */ 30% 40%,
+    /* Apr */ 40% 30%,
+    /* May */ 50% 20%,
+    /* Jun */ 60% 15%,
+    /* Jul */ 70% 10%,
+    /* Aug */ 80% 8%,
+    /* Sep */ 90% 6%,
+    /* Oct */ 100% 5% /* Nov */
+  );
+  border-bottom: 2px dashed #e74c3c; /* Red dashed line */
+}
+
+.volatility-x-axis {
+  position: absolute;
+  bottom: 0;
+  left: 40px;
+  width: calc(100% - 40px);
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+  color: #a0a0a0;
+  font-size: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.volatility-x-axis span {
+  width: 8%;
+  text-align: center;
+}
+
+.risk-factors .risk-factor-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.risk-factors .risk-factor-item p {
+  flex-grow: 1;
+  font-size: 0.95rem;
+  color: #e0e0e0;
+}
+
+.risk-factors .risk-bar {
+  height: 8px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  width: 100px; /* Fixed width for bars */
+}
+.risk-factors .risk-bar.high {
+  background-color: #e74c3c;
+  width: 70px;
+}
+.risk-factors .risk-bar.medium {
+  background-color: #f39c12;
+  width: 50px;
+}
+.risk-factors .risk-bar.low {
+  background-color: #2ecc71;
+  width: 30px;
+}
+.risk-factors .risk-bar.medium-high {
+  background-color: #e67e22;
+  width: 60px;
+}
+
+.risk-factors .risk-factor-item span {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #a0a0a0;
+  width: 80px; /* Align text */
+  text-align: right;
+}
+
+/* Correlation Matrix */
+.correlation-matrix .table-responsive {
+  overflow-x: auto;
+}
+.correlation-matrix .metrics-table th,
+.correlation-matrix .metrics-table td {
+  padding: 0.8rem;
+  text-align: center;
+}
+
+/* Risk Mitigation Recommendations */
+.risk-mitigation ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.risk-mitigation li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+  color: #e0e0e0;
+  line-height: 1.4;
+}
+
+.risk-mitigation .recommendation-icon {
+  color: #2ecc71; /* Green checkmark-like icon */
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 0.2rem; /* Adjust alignment with text */
+}
+
+/* --- Optimize Portfolio CTA --- */
+.optimize-portfolio-cta {
+  background: linear-gradient(
+    90deg,
+    #34495e 0%,
+    #2c3e50 100%
+  ); /* Dark blue/grey gradient */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 2.5rem 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.optimize-portfolio-cta .cta-left {
+  flex: 1;
+  min-width: 300px;
+}
+
+.optimize-portfolio-cta .cta-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.optimize-portfolio-cta .cta-description {
+  font-size: 1rem;
+  color: #e0e0e0;
+  line-height: 1.5;
+}
+
+.optimize-portfolio-cta .cta-right {
+  display: flex;
+  gap: 1rem;
+  flex-shrink: 0;
+  flex-wrap: wrap; /* Allow buttons to wrap */
+}
+
+.optimize-portfolio-cta .cta-button {
+  background: transparent;
+  border: 1px solid #ffffff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  color: #ffffff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.optimize-portfolio-cta .cta-button.primary {
+  background-color: #888888; /* Grey for primary action */
+  color: #0a0a0a;
+  border-color: #888888;
+}
+
+.optimize-portfolio-cta .cta-button.primary:hover {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #0a0a0a;
+}
+
+.optimize-portfolio-cta .cta-button.secondary {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.optimize-portfolio-cta .cta-button.secondary:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: #ffffff;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+  .analytics-page-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1.5rem;
+  }
+
+  .analytics-content-area {
+    padding-top: 0;
+  }
+
+  .main-content {
+    padding: 1rem;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: center; /* Center buttons if they wrap */
+  }
+
+  .summary-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-grid-two-cols {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-area-full,
+  .risk-return-analysis-chart .scatter-chart,
+  .volatility-analysis .line-chart {
+    height: 200px; /* Adjust chart heights for smaller screens */
+  }
+
+  .performance-summary-values {
+    grid-template-columns: 1fr; /* Stack values on smaller screens */
+    text-align: left; /* Align text to left */
+  }
+
+  .optimize-portfolio-cta {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .optimize-portfolio-cta .cta-right {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .optimize-portfolio-cta .cta-button {
+    width: 100%;
+  }
+
+  .risk-factors .risk-factor-item {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .risk-factors .risk-bar {
+    width: 100% !important; /* Make bars full width to be visible */
+    margin-right: 0; /* Remove margin */
+  }
+  .risk-factors .risk-factor-item span {
+    width: auto; /* Allow text to take natural width */
+    text-align: left;
+  }
+  .correlation-matrix .metrics-table {
+    font-size: 0.8rem; /* Smaller font for table on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .summary-card .card-value {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+}

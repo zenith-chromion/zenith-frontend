@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FUNDFORGE</title>
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Tailwind CSS custom configuration
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              inter: ["Inter", "sans-serif"],
+            },
+            keyframes: {
+              pulse: {
+                "0%, 100%": { opacity: "1" },
+                "50%": { opacity: "0.3" },
+              },
+              float: {
+                "0%, 100%": { transform: "translateY(0px) rotate(0deg)" },
+                "50%": { transform: "translateY(-15px) rotate(2deg)" },
+              },
+              glow: {
+                "0%": { transform: "scale(1)", opacity: "0.3" },
+                "100%": { transform: "scale(1.1)", opacity: "0.1" },
+              },
+              fadeInUp: {
+                from: {
+                  opacity: "0",
+                  transform: "translateY(30px)",
+                },
+                to: {
+                  opacity: "1",
+                  transform: "translateY(0)",
+                },
+              },
+            },
+            animation: {
+              pulse: "pulse 2s infinite",
+              "float-1": "float 3s ease-in-out infinite",
+              "float-2": "float 3s ease-in-out infinite 1s",
+              "float-3": "float 3s ease-in-out infinite 2s",
+              glow: "glow 4s ease-in-out infinite alternate",
+              "fade-in-up": "fadeInUp 1s ease-out forwards",
+            },
+          },
+        },
+        plugins: [],
+      };
+    </script>
+  </head>
+  <body class="bg-neutral-900 text-white font-inter">
+    <div id="root"></div>
+    <!-- The main JavaScript file for your React app -->
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
